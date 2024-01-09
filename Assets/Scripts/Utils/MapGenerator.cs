@@ -76,7 +76,7 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
                 if (isLocUsed) { continue; }
-                GameObject tile = randomizer.GetDouble() < 0.7 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
+                GameObject tile = randomizer.GetDouble() < 0.88 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
                 Instantiate(tile, (Vector2)currLoc * 4, Quaternion.identity);
             }
         }
