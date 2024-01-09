@@ -29,6 +29,14 @@ public class PlayerController : MonoBehaviour
     {
         PrintFromInventory();
         body.velocity = new Vector2(Input.GetAxis("Horizontal") * movingSpeed * Time.deltaTime, Input.GetAxis("Vertical") * movingSpeed * Time.deltaTime);
+        if(Input.GetAxis("Horizontal") > 0.0f)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
         ModifyHealth(-1);
     }
 
