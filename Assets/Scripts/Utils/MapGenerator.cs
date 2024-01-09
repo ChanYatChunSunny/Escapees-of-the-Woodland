@@ -66,7 +66,7 @@ public class MapGenerator : MonoBehaviour
                 isLocUsed = false;
                 currLoc = newLoc;
             }
-            if(randomizer.GetDouble() < 0.1)
+            if (randomizer.GetDouble() < 0.1)
             {
                 Instantiate(uniqueTiles[uniquePtr], (Vector2)currLoc * 4, Quaternion.identity);
                 uniquePtr++;
@@ -75,6 +75,7 @@ public class MapGenerator : MonoBehaviour
             {
                 Instantiate(commonTiles[0], (Vector2)currLoc * 4, Quaternion.identity);
             }
+            usedLocs.AddLast(currLoc);
         }
 
         for (int i = 0; i < size; i++)
