@@ -66,7 +66,6 @@ public class MapGenerator : MonoBehaviour
                 isLocUsed = false;
                 currLoc = newLoc;
             }
-            Debug.Log("hi: "+currLoc);
             if(randomizer.GetDouble() < 0.1)
             {
                 Instantiate(uniqueTiles[uniquePtr], (Vector2)currLoc * 4, Quaternion.identity);
