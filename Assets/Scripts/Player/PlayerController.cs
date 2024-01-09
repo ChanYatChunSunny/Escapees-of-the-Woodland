@@ -9,32 +9,21 @@ public class PlayerController : MonoBehaviour
     public int inverntoryCount = 0;
     public int health = 100;
     [SerializeField] float movingSpeed = 5f;
+
+    private Rigidbody2D body;
+
     // Start is called before the first frame update
     public void Start()
     {
+        body = this.GetComponent<Rigidbody2D>();
         Debug.Log("Player Spawn!");
     }
 
     // Update is called once per frame
-    public void Update()
+    public void FixedUpdate()
     {
         PrintFromInventory();
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(0, movingSpeed * Time.deltaTime, 0);
-        }
-        else if (Input.GetKey(KeyCode.S)) 
-        {
-            transform.Translate(0, -movingSpeed * Time.deltaTime, 0);
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(movingSpeed * Time.deltaTime, 0, 0);
-        }
-        else if (Input.GetKey(KeyCode.A)) 
-        {
-            transform.Translate(-movingSpeed * Time.deltaTime, 0, 0);
-        }
+        body.velocity = new Vector2(Input.GetAxis("Horizontal") * movingSpeed * Time.deltaTime, Input.GetAxis("Vertical") * movingSpeed * Time.deltaTime);
     }
 
     //function to get the element in inventory
