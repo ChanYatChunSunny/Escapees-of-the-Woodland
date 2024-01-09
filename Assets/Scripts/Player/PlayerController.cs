@@ -30,19 +30,29 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
         PrintFromInventory();
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * movingSpeed * Time.deltaTime, Input.GetAxis("Vertical") * movingSpeed * Time.deltaTime);
-        if(Input.GetAxis("Horizontal") > 0.01f)
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        body.velocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
+
+        if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f))
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-            
+            if (horizontal > 0.0f)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+
+            }
+            else if (horizontal < -0.0f)
+            {
+                transform.localScale = Vector3.one;
+            }
+            animator.SetBool("walking", true);
+            animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("vertical", Input.GetAxis("Vertical"));
         }
         else
         {
-            transform.localScale = Vector3.one;
+            animator.SetBool("walking", false);
         }
-        animator.SetBool("walking", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0);
-        animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
-        animator.SetFloat("vertical", Input.GetAxis("Vertical"));
         ModifyHealth(-1);
     }
 
