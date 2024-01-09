@@ -8,26 +8,19 @@ using static UnityEditor.PlayerSettings;
 public class MapGenerator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] commonTiles = new GameObject[] { };
+    private GameObject[] commonTiles;
 
     [SerializeField]
-    private GameObject[] rareTiles = new GameObject[] { };
+    private GameObject[] rareTiles;
 
     [SerializeField]
-    private GameObject[] uniqueTiles = new GameObject[] { };
+    private GameObject[] uniqueTiles;
 
 
-    private TileBase[][] floor;
 
     // Start is called before the first frame update
     void Start()
     {
-        int size = GameData.GetMapSize();
-        floor = new TileBase[size][];
-        for(int i = 0; i < size; i++)
-        {
-            floor[i] = new TileBase[size];
-        }
         Generate();
     }
 
@@ -60,9 +53,9 @@ public class MapGenerator : MonoBehaviour
                         break;
                     }
                 }
-                isLocUsed = true;
+                isLocUsed = false;
             }
-            Instantiate(uniqueTiles[i], (Vector2) currLoc * 128, Quaternion.identity);
+            Instantiate(uniqueTiles[i], (Vector2) currLoc * 4, Quaternion.identity);
         }
 
 
@@ -82,7 +75,7 @@ public class MapGenerator : MonoBehaviour
                 }
                 if (isLocUsed) { continue; }
                 GameObject tile = randomizer.GetDouble() < 0.7 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
-                Instantiate(tile, (Vector2)currLoc * 128, Quaternion.identity);
+                Instantiate(tile, (Vector2)currLoc * 4, Quaternion.identity);
             }
         }
     }
