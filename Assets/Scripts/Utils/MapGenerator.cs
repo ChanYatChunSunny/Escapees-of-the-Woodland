@@ -36,31 +36,48 @@ public class MapGenerator : MonoBehaviour
         LinkedList<Vector2Int> usedLocs = new LinkedList<Vector2Int>();
 
 
-        Vector2Int currLoc;
+        Vector2Int currLoc = Vector2Int.zero;
         bool isLocUsed;
-        for (int i = 0; i < uniqueLen; i++)
+        Instantiate(commonTiles[0], Vector2.zero, Quaternion.identity);
+        usedLocs.AddLast(currLoc);
+        int uniquePtr = 0;
+        while (uniquePtr < uniqueLen) 
         {
-            //1 offset for higher chance to have open space nearby
             isLocUsed = true;
-            currLoc = Vector2Int.zero;
+            Direction dir = Direction.up;
             while (isLocUsed)
             {
-                currLoc = new Vector2Int(randomizer.GetInt(1, size - 1), randomizer.GetInt(1, size - 1));
+                dir = randomizer.GetDouble() < 0.6 ? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left);
+                Vector2Int newLoc = currLoc + DirectionOperation.DirectionToVector2Int(dir);
+                if(newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size) 
+                { 
+                    isLocUsed = true;
+                    continue; 
+                }
                 foreach (Vector2Int usedLoc in usedLocs)
                 {
-                    if (currLoc.Equals(usedLoc))
+                    if (newLoc.Equals(usedLoc))
                     {
                         isLocUsed = true;
                         break;
                     }
                 }
+                //TODO: Add a warning system for failed generation.
                 isLocUsed = false;
+                currLoc = newLoc;
             }
-            Instantiate(uniqueTiles[i], (Vector2) currLoc * 4, Quaternion.identity);
+            Debug.Log("hi: "+currLoc);
+            if(randomizer.GetDouble() < 0.1)
+            {
+                Instantiate(uniqueTiles[uniquePtr], (Vector2)currLoc * 4, Quaternion.identity);
+                uniquePtr++;
+            }
+            else
+            {
+                Instantiate(commonTiles[0], (Vector2)currLoc * 4, Quaternion.identity);
+            }
         }
 
-        Instantiate(commonTiles[0], Vector2.zero, Quaternion.identity);
-        usedLocs.AddLast(Vector2Int.zero);
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
@@ -76,7 +93,7 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
                 if (isLocUsed) { continue; }
-                GameObject tile = randomizer.GetDouble() < 0.88 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
+                GameObject tile = randomizer.GetDouble() < 0.8 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
                 Instantiate(tile, (Vector2)currLoc * 4, Quaternion.identity);
             }
         }
