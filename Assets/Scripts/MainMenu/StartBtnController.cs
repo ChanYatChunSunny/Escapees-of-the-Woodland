@@ -8,16 +8,13 @@ using UnityEngine.SceneManagement;
 public class StartBtnController : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text wrongInputText;
+    private GameObject mainObj;
     [SerializeField]
-    private TMP_InputField seedField;
-    [SerializeField]
-    private TMP_InputField mapSizeField;
+    private GameObject GenObj;
 
     // Start is called before the first frame update
     void Start()
     {
-        wrongInputText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,23 +25,8 @@ public class StartBtnController : MonoBehaviour
 
     public void OnClick()
     {
-        wrongInputText.gameObject.SetActive(false);
-        GameData.Init();
-        try
-        {
-            int seed = int.Parse(seedField.text);
-            int mapSize = int.Parse(mapSizeField.text);
-            if (seed > 0 && mapSize > 32) 
-            {
-                GameData.GetRandomizer().SetSeed(seed);
-                GameData.SetMapSize(mapSize);
-                SceneManager.LoadScene("GameScene");
-            }
-        }
-        catch (Exception) 
-        {
-        
-        }
+        mainObj.SetActive(false);
+        GenObj.SetActive(true);
 
     }
 
