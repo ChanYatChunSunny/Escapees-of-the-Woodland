@@ -3,10 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Randomizer : MonoBehaviour
+public class Randomizer
 {
-    private int seed;
     private System.Random random;
+
+    public Randomizer()
+    {
+        random = new System.Random();
+    }
+
+    public Randomizer(int seed)
+    {
+        
+        random = new System.Random(seed);
+    }
 
     /// <summary>
     /// Side effect: Replace the current RNG
