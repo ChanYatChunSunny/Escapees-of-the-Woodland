@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
     public HealthBarController healthBarController;
     private Rigidbody2D body;
+    private Animator animator;
 
     // Start is called before the first frame update
     public void Start()
     {
         body = this.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         healthBarController.SetMaxHealth(maxHealth);
         Debug.Log("Player Spawn!");
@@ -32,12 +34,15 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxis("Horizontal") > 0.01f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            transform.localScale = Vector3.one;
+            
         }
         else
         {
             transform.localScale = Vector3.one;
         }
+        animator.SetBool("walking", Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0);
+        animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
+        animator.SetFloat("vertical", Input.GetAxis("Vertical"));
         ModifyHealth(-1);
     }
 
