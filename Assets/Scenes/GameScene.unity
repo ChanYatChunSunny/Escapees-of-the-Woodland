@@ -155,7 +155,7 @@ MonoBehaviour:
   commonTiles:
   - {fileID: 138406909409251677, guid: c6b6613f39981a64fa24f2d99d154f24, type: 3}
   rareTiles:
-  - {fileID: 138406909409251677, guid: c6b6613f39981a64fa24f2d99d154f24, type: 3}
+  - {fileID: 366616422265935100, guid: d41283c91f9306b4e883e63f67d94be3, type: 3}
   uniqueTiles:
   - {fileID: 138406909409251677, guid: c6b6613f39981a64fa24f2d99d154f24, type: 3}
 --- !u!4 &584042199
