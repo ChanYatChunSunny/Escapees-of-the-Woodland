@@ -29,13 +29,14 @@ public class PlayerController : MonoBehaviour
     {
         PrintFromInventory();
         body.velocity = new Vector2(Input.GetAxis("Horizontal") * movingSpeed * Time.deltaTime, Input.GetAxis("Vertical") * movingSpeed * Time.deltaTime);
-        if(Input.GetAxis("Horizontal") > 0.0f)
+        if(Input.GetAxis("Horizontal") > 0.01f)
         {
+            transform.localScale = new Vector3(-1, 1, 1);
             transform.localScale = Vector3.one;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = Vector3.one;
         }
         ModifyHealth(-1);
     }
