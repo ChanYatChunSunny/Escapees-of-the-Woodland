@@ -21,6 +21,7 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameData.Init();
         Generate();
     }
 
@@ -58,7 +59,8 @@ public class MapGenerator : MonoBehaviour
             Instantiate(uniqueTiles[i], (Vector2) currLoc * 4, Quaternion.identity);
         }
 
-
+        Instantiate(commonTiles[0], Vector2.zero, Quaternion.identity);
+        usedLocs.AddLast(Vector2Int.zero);
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
