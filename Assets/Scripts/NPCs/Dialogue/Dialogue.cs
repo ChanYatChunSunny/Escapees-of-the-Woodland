@@ -21,39 +21,30 @@
 
     public Dialogue(string title, string respond, bool? isLeaveable) : this(new Dialogue[0], title, respond, "", isLeaveable) { }
 
-    public Dialogue GetChild(int index)
+    public Dialogue[] Children
     {
-        return children[index];
+        get { return children; }
+        set { children = value; }
     }
 
-    public Dialogue[] GetChildren()
+    public string Meta
     {
-        return children;
+        get { return meta; }
     }
 
-    public string GetMeta()
+    public string Respond
     {
-        return meta;
+        get { return respond; }
     }
 
-    public string GetRespond()
+    public string Title
     {
-        return respond;
+        get { return title; }
     }
 
-    public string GetTitle()
+    public bool? IsLeaveable
     {
-        return title;
-    }
-
-    public bool? IsLeaveable()
-    {
-        return isLeaveable;
-    }
-
-    public void SetChildren(Dialogue[] children)
-    {
-        this.children = children;
+        get { return isLeaveable; }
     }
 }
 

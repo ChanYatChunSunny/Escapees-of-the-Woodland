@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DialogueGraph
 {
     private Dialogue curr;
@@ -13,32 +9,32 @@ public class DialogueGraph
 
     public string[] GetCurrOptions()
     {
-        Dialogue[] currChildren = curr.GetChildren();
+        Dialogue[] currChildren = curr.Children;
         int currChildrenLen = currChildren.Length;
         string[] ret = new string[currChildrenLen];
         for(int i = 0; i < currChildrenLen; i++)
         {
-            ret[i] = currChildren[i].GetTitle();
+            ret[i] = currChildren[i].Title;
         }
         return ret;
     }
     
     public string GetCurrTitle()
     {
-        return curr.GetTitle();
+        return curr.Title;
     }
 
     public string GetCurrRespond()
     {
-        return curr.GetRespond();
+        return curr.Respond;
     }
 
     public void SelectNext(int index)
     {
-        curr = curr.GetChild(index);
-        if (curr.IsLeaveable() != null)
+        curr = curr.Children[index];
+        if (curr.IsLeaveable != null)
         {
-            isLeaveable = (bool)curr.IsLeaveable();
+            isLeaveable = (bool)curr.IsLeaveable;
         }
     }
 
@@ -49,7 +45,7 @@ public class DialogueGraph
 
     public bool IsEnded()
     {
-        return curr.GetChildren().Length == 0;
+        return curr.Children.Length == 0;
     }
 
 }
