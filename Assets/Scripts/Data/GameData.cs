@@ -31,6 +31,7 @@ public class GameData
     {
         if (isInitialized) { return; }
         randomizer = new Randomizer();
+        mapSize = 32;
         isInitialized = true;
     }
 }
