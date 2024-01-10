@@ -129,12 +129,18 @@ public class PlayerController : MonoBehaviour
     //function to add elements into inventory
     public void AddInventory(Aid element)
     {
-        if (CheckInventorySize())
+        bool added = false;
+        for(int i = 0; i < inventorySize; i++)
         {
-            inventory[inverntoryCount] = element;
-            inventoryValue[inverntoryCount++].text = element.GetName(); 
+            if (inventory[i] == null)
+            {
+                inventory[inverntoryCount] = element;
+                inventoryValue[inverntoryCount++].text = element.GetName();
+                added = true;
+                break;
+            }
         }
-        else
+        if(!added)
         {
             Debug.Log("Inventory is full");
         }
