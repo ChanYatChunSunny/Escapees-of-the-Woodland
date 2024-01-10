@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,10 @@ public class PlayerController : MonoBehaviour
     public const float highlighterInitYPos = 55f;
     public const float highlighterFinalYPos = -163.75f;
     private Aid[] inventory = new Aid[inventorySize];
-    public Text[] inventoryValue = new Text[inventorySize];
+    public TMP_Text[] inventoryValue = new TMP_Text[inventorySize];
     public int inverntoryCount = 0;
     [SerializeField] float movingSpeed = 5f;
-    [SerializeField] Text remainingHealth;
+    [SerializeField] TMP_Text remainingHealth;
     public int maxHealth = 100;
     public int currentHealth;
     public float time = 0f;
