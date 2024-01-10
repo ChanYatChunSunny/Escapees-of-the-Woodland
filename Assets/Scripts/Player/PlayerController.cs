@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Rendering.FilterWindow;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public float time = 0f;
+    public PlayerController playerController;
     public HealthBarController healthBarController;
     private Rigidbody2D body;
     private Animator animator;
@@ -73,6 +75,9 @@ public class PlayerController : MonoBehaviour
         {
             highlightController.ModifyPos(highlighterChangePos);
         }
+        
+        
+        ModifyHealth(-1);
     }
 
     //function to get the element in inventory
@@ -94,20 +99,30 @@ public class PlayerController : MonoBehaviour
     //function to check whether the inventory is full or not
     public bool CheckInventorySize()
     {
-        return inventory.Length <= inventorySize;
+        return inventory.Length < inventorySize;
     }
 
     //function to add elements into inventory
-    public void AddInventory(Aid element, int count)
+    public void AddInventory(Aid element)
     {
         if (CheckInventorySize())
         {
-            inventory[count++] = element;
+            inventory[inverntoryCount] = element;
+            inventoryValue[inverntoryCount++].text = element.GetName(); 
         }
         else
         {
             Debug.Log("Inventory is full");
         }
+    }
+
+    //function to consume the aids
+    public void ConsumeAid()
+    {
+        int pos = highlightController.GetCount();
+        inventory[pos].ConsumeBy(playerController);
+        inventory[pos] = null;
+        inventoryValue[pos].text = "-Empty ";
     }
 
     //function to change the health of player
