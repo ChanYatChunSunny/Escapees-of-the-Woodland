@@ -3,8 +3,6 @@ using UnityEngine;
 
 public abstract class Aid : MonoBehaviour
 {
-    [SerializeField]
-    public TMP_Text actionText;
     // Start is called before the first frame update
     public virtual void Start()
     {

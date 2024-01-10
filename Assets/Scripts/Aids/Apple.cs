@@ -7,17 +7,10 @@ public class Apple : Aid
     public override void ConsumeBy(PlayerController playerController)
     {
         playerController.ModifyHealth(10);
-        actionText.gameObject.SetActive(true);
-        actionText.SetText("You ate an apple");
-        StartCoroutine(DeactiveActionText());
+        playerController.SetActionText("You ate an apple");
+        playerController.FlashActionText();
 
     }
-    private IEnumerator DeactiveActionText()
-    {
-        yield return new WaitForSeconds(1);
-        actionText.gameObject.SetActive(false);
-    }
-
     public override string GetName()
     {
         return "apple";

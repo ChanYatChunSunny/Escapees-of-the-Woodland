@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public const int inventorySize = 8;
+    public const int ArtifactsNum = 8;
     public const float highlighterXPos = 10f;
     public const float highlighterChangePos = -31.25f;
     public const float highlighterInitYPos = 55f;
@@ -16,16 +17,18 @@ public class PlayerController : MonoBehaviour
     public int inverntoryCount = 0;
     [SerializeField] float movingSpeed = 5f;
     [SerializeField] TMP_Text remainingHealth;
+    [SerializeField] private TMP_Text actionText;
     public int maxHealth = 100;
     public int currentHealth;
     public float time = 0f;
-    public PlayerController playerController;
     public HealthBarController healthBarController;
     private Rigidbody2D body;
     private Animator animator;
     public HighlighterController highlightController;
     private GameObject currTile;
     public DialogueHandler DialogueHandler { get; private set; }
+    public bool[] carryingArtifacts = new bool[ArtifactsNum];
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -35,7 +38,10 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         healthBarController.SetMaxHealth(maxHealth);
         highlightController.SetPos(highlighterXPos, highlighterInitYPos, highlighterFinalYPos);
-        Debug.Log("Player Spawn!");
+        for(int i = 0; i < 8; i++)
+        {
+            carryingArtifacts[i] = false;
+        }
     }
 
     // Update is called once per frame
@@ -76,12 +82,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             highlightController.ModifyPos(highlighterChangePos);
-        }else if (Input.GetKeyUp(KeyCode.T))
+        }
+        else if (Input.GetKeyUp(KeyCode.T))
         {
             if(currTile != null)
             {
                 currTile.GetComponent<Tile>().Interact(this);
             }
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            ConsumeAid();
         }
         
         
@@ -90,9 +101,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("tile"))
+        if (collision.CompareTag("Tile"))
         {
             currTile = collision.gameObject;
+        }
+        else if (collision.CompareTag("Aid") && collision.gameObject.activeInHierarchy)
+        {
+            AddInventory(collision.GetComponent<Aid>());
+            collision.gameObject.SetActive(false);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -145,12 +161,27 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Inventory is full");
         }
     }
+    public void SetActionText(string str)
+    {
+        actionText.text = str;
+    }
+    public void FlashActionText()
+    {
+        actionText.gameObject.SetActive(true);
+        StartCoroutine(DeactiveActionText());
+    }
+    private IEnumerator DeactiveActionText()
+    {
+        yield return new WaitForSeconds(1);
+        actionText.gameObject.SetActive(false);
+    }
 
     //function to consume the aids
     public void ConsumeAid()
     {
         int pos = highlightController.GetCount();
-        inventory[pos].ConsumeBy(playerController);
+        if (inventory[pos] == null) { return; }
+        inventory[pos].ConsumeBy(this);
         inventory[pos] = null;
         inventoryValue[pos].text = "-Empty ";
     }
