@@ -61,13 +61,17 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("walking", false);
         }
         
+        
+        
+        ModifyHealth(-1);
+    }
+
+    public void Update()
+    {
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             highlightController.ModifyPos(highlighterChangePos);
         }
-        
-        
-        ModifyHealth(-1);
     }
 
     //function to get the element in inventory
