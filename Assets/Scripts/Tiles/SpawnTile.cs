@@ -7,7 +7,6 @@ public class SpawnTile : Tile
     // Start is called before the first frame update
     public override void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -17,6 +16,5 @@ public class SpawnTile : Tile
     }
     public override void Interact(PlayerController playerController)
     {
-        Debug.Log("test");
     }
 }
