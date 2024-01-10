@@ -15,4 +15,9 @@ public class Tile : MonoBehaviour
     {
         
     }
+
+    public virtual void Interact(PlayerController playerController)
+    {
+
+    }
 }

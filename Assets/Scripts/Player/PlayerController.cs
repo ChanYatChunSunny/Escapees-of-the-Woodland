@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     private Animator animator;
     public HighlighterController highlightController;
+    private GameObject currTile;
     // Start is called before the first frame update
     public void Start()
     {
@@ -74,10 +75,32 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             highlightController.ModifyPos(highlighterChangePos);
+        }else if (Input.GetKeyUp(KeyCode.T))
+        {
+            if(currTile != null)
+            {
+                currTile.GetComponent<Tile>().Interact(this);
+            }
         }
         
         
         ModifyHealth(-1);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("tile"))
+        {
+            currTile = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.Equals(currTile))
+        {
+            currTile = null;
+        }
     }
 
     //function to get the element in inventory

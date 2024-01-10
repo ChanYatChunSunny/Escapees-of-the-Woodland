@@ -15,4 +15,8 @@ public class SpawnTile : Tile
     {
 
     }
+    public override void Interact(PlayerController playerController)
+    {
+        Debug.Log("test");
+    }
 }
