@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Rendering.FilterWindow;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,11 +25,13 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public HighlighterController highlightController;
     private GameObject currTile;
+    public DialogueHandler DialogueHandler { get; private set; }
     // Start is called before the first frame update
     public void Start()
     {
-        body = this.GetComponent<Rigidbody2D>();
+        body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        DialogueHandler = GetComponent<DialogueHandler>();
         currentHealth = maxHealth;
         healthBarController.SetMaxHealth(maxHealth);
         highlightController.SetPos(highlighterXPos, highlighterInitYPos, highlighterFinalYPos);
