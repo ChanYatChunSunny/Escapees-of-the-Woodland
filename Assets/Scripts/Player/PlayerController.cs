@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public const int inventorySize = 10;
-    public const float highlighterXPos = 1f;
-    public const float highlighterChangePos = -18.75f;
-    public const float highlighterInitYPos = 65f;
-    public const float highlighterFinalYPos = -66.25f;
-    private string[] inventory = new string[inventorySize];
+    public const int inventorySize = 8;
+    public const float highlighterXPos = 10f;
+    public const float highlighterChangePos = -31.25f;
+    public const float highlighterInitYPos = 55f;
+    public const float highlighterFinalYPos = -163.75f;
+    private Aid[] inventory = new Aid[inventorySize];
+    public Text[] inventoryValue = new Text[inventorySize];
     public int inverntoryCount = 0;
     [SerializeField] float movingSpeed = 5f;
     [SerializeField] Text remainingHealth;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void FixedUpdate()
     {
-        //PrintFromInventory();
+        PrintFromInventory();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         body.velocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
@@ -74,7 +75,14 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < inventorySize; i++)
         {
-            Debug.Log(inventory[i] + "\n");
+            if (inventory[i] != null)
+            {
+                inventoryValue[i].text = inventory[i].GetName();
+            }
+            else
+            {
+                inventoryValue[i].text = "- Empty " + i.ToString();
+            }
         }
     }
 
@@ -85,7 +93,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //function to add elements into inventory
-    public void AddInventory(string element, int count)
+    public void AddInventory(Aid element, int count)
     {
         if (CheckInventorySize())
         {
