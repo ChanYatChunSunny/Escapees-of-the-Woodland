@@ -14,8 +14,8 @@ public class PaulTile : Tile
     {
         startedTalk = false;
         Instantiate(paul, this.transform.position + new Vector3(0.2f, 1, 1), Quaternion.identity);
-        Dialogue start = new Dialogue("", "Hello! My name is Paul! I love helping people! Anything I can help you with?", true);
-        Dialogue anythingNeedHelp = new Dialogue("", "Anything I can help you with?", false);
+        Dialogue start = new Dialogue("Hello", "Hello! My name is Paul! I love helping people! Anything I can help you with?", true);
+        Dialogue anythingNeedHelp = new Dialogue("Hello", "Anything I can help you with?", false);
         Dialogue nothingNeedHelp = new Dialogue("There is nothing I need you to help currently.", "Good, then I will see you later!", false);
         anythingNeedHelp.Children = new Dialogue[] { nothingNeedHelp };
         Dialogue bye = new Dialogue("Bye.", "", true);

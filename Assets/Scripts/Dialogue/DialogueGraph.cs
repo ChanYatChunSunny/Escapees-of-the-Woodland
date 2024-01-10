@@ -1,3 +1,4 @@
+
 public class DialogueGraph
 {
     private Dialogue curr;
@@ -37,10 +38,7 @@ public class DialogueGraph
     public void SelectNext(int index)
     {
         curr = curr.Children[index];
-        if (curr.IsLeaveable != null)
-        {
-            IsLeaveable = (bool)curr.IsLeaveable;
-        }
+        IsLeaveable = curr.IsLeaveable==true;
     }
 
 

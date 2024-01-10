@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -10,6 +8,8 @@ public class DialogueHandler : MonoBehaviour
     private GameObject dialogueUI;
     [SerializeField]
     private TMP_Text dialogueText;
+    [SerializeField]
+    private GameObject escAbleText;
     public bool isInConversation;
 
     public DialogueGraph dialogueGraph { private get;  set; }
@@ -18,6 +18,7 @@ public class DialogueHandler : MonoBehaviour
     void Start()
     {
         isInConversation = false;
+        escAbleText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,6 +32,14 @@ public class DialogueHandler : MonoBehaviour
         }
         if (!isInConversation) { return; }
         dialogueUI.SetActive(true);
+        if (dialogueGraph.IsLeaveable)
+        {
+            escAbleText.SetActive(true);
+        }
+        else
+        {
+            escAbleText.SetActive(false);
+        }
         string[] options = dialogueGraph.GetCurrOptions();
         StringBuilder sb = new StringBuilder(dialogueGraph.GetCurrNpcSpeech());
         sb.Append("\n\n");
@@ -48,7 +57,7 @@ public class DialogueHandler : MonoBehaviour
             if (dialogueGraph.IsLeaveable)
             {
                 isInConversation = false;
-                dialogueUI.SetActive(true);
+                dialogueUI.SetActive(false);
             }
         }
         else if (isInConversation)
