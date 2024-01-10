@@ -10,26 +10,29 @@ public class DialogueHandler : MonoBehaviour
     private GameObject dialogueUI;
     [SerializeField]
     private TMP_Text dialogueText;
+    public bool isInConversation;
 
-    public DialogueGraph DialogueGraph { private get;  set; }
+    public DialogueGraph dialogueGraph { private get;  set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isInConversation = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (DialogueGraph == null || DialogueGraph.IsEnded()) 
+        if(dialogueGraph == null) { return; }
+        if (dialogueGraph.CheckIsEnded()) 
         {
             dialogueUI.SetActive(false);
             return;
         }
+        if (!isInConversation) { return; }
         dialogueUI.SetActive(true);
-        string[] options = DialogueGraph.GetCurrOptions();
-        StringBuilder sb = new StringBuilder(DialogueGraph.GetCurrNpcSpeech());
+        string[] options = dialogueGraph.GetCurrOptions();
+        StringBuilder sb = new StringBuilder(dialogueGraph.GetCurrNpcSpeech());
         sb.Append("\n\n");
         for(int i = 0; i < options.Length; i++)
         {
@@ -40,32 +43,43 @@ public class DialogueHandler : MonoBehaviour
         }
         dialogueText.text = sb.ToString();
         int optionsLen = options.Length;
-        if(Input.GetKeyUp(KeyCode.Alpha0) || Input.GetKeyUp(KeyCode.Keypad0))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if(optionsLen > 0)
+            if (dialogueGraph.IsLeaveable)
             {
-                DialogueGraph.SelectNext(0);
+                isInConversation = false;
+                dialogueUI.SetActive(true);
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1))
+        else if (isInConversation)
         {
-            if (optionsLen > 1)
+            if (Input.GetKeyUp(KeyCode.Alpha0) || Input.GetKeyUp(KeyCode.Keypad0))
             {
-                DialogueGraph.SelectNext(1);
+                if (optionsLen > 0)
+                {
+                    dialogueGraph.SelectNext(0);
+                }
             }
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2))
-        {
-            if (optionsLen > 2)
+            else if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1))
             {
-                DialogueGraph.SelectNext(2);
+                if (optionsLen > 1)
+                {
+                    dialogueGraph.SelectNext(1);
+                }
             }
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3))
-        {
-            if (optionsLen > 3)
+            else if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2))
             {
-                DialogueGraph.SelectNext(3);
+                if (optionsLen > 2)
+                {
+                    dialogueGraph.SelectNext(2);
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3))
+            {
+                if (optionsLen > 3)
+                {
+                    dialogueGraph.SelectNext(3);
+                }
             }
         }
     }

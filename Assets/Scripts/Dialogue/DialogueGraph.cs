@@ -1,7 +1,7 @@
 public class DialogueGraph
 {
     private Dialogue curr;
-    private bool isLeaveable;
+    public bool IsLeaveable { get; private set; }
     public DialogueGraph(Dialogue start)
     {
         curr = start;
@@ -39,16 +39,12 @@ public class DialogueGraph
         curr = curr.Children[index];
         if (curr.IsLeaveable != null)
         {
-            isLeaveable = (bool)curr.IsLeaveable;
+            IsLeaveable = (bool)curr.IsLeaveable;
         }
     }
 
-    public bool IsLeaveable()
-    {
-        return isLeaveable;
-    }
 
-    public bool IsEnded()
+    public bool CheckIsEnded()
     {
         return curr.Children.Length == 0;
     }

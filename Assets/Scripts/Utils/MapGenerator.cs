@@ -40,6 +40,7 @@ public class MapGenerator : MonoBehaviour
         //Instantiate(commonTiles[0], Vector2.zero, Quaternion.identity);
         usedLocs.AddLast(currLoc);
         int uniquePtr = 0;
+        int randWalkCounter = 0;
         //Generate unique tiles with a guaranteed path connecting them
         while (uniquePtr < uniqueLen)
         {
@@ -47,9 +48,10 @@ public class MapGenerator : MonoBehaviour
             Direction dir = Direction.up;
             while (isLocUsed)
             {
+                isLocUsed = false;
                 dir = randomizer.GetDouble() < 0.6 ? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left);
                 Vector2Int newLoc = currLoc + DirectionOperation.DirectionToVector2Int(dir);
-                if (newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size)
+                if (newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size || newLoc.y >= size)
                 {
                     isLocUsed = true;
                     continue;
@@ -63,18 +65,19 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
                 //TODO: Add a warning system for failed generation.
-                isLocUsed = false;
                 currLoc = newLoc;
             }
-            if (randomizer.GetDouble() < 0.1)
+            if (randWalkCounter > randomizer.GetInt(6, 12))
             {
                 Instantiate(uniqueTiles[uniquePtr], (Vector2)currLoc * 4, Quaternion.identity);
                 uniquePtr++;
+                randWalkCounter = 0;
             }
             else
             {
                 Instantiate(commonTiles[0], (Vector2)currLoc * 4, Quaternion.identity);
             }
+            randWalkCounter++;
             usedLocs.AddLast(currLoc);
         }
         //Generate the rest of the map
@@ -93,7 +96,7 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
                 if (isLocUsed) { continue; }
-                GameObject tile = randomizer.GetDouble() < 0.8 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
+                GameObject tile = randomizer.GetDouble() < 0.6 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
                 Instantiate(tile, (Vector2)currLoc * 4, Quaternion.identity);
             }
         }
