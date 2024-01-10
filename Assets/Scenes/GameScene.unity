@@ -1485,7 +1485,7 @@ MonoBehaviour:
   inverntoryCount: 0
   movingSpeed: 256
   remainingHealth: {fileID: 1663606013}
-  actionText: {fileID: 0}
+  actionText: {fileID: 605562721}
   maxHealth: 100
   currentHealth: 0
   time: 0
@@ -1598,7 +1598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 1961380548}
-  dialogueText: {fileID: 605562721}
+  dialogueText: {fileID: 1869775612}
   escAbleText: {fileID: 1322381264}
   isInConversation: 0
 --- !u!1 &1100854355
@@ -3897,7 +3897,7 @@ GameObject:
   - component: {fileID: 1869775613}
   - component: {fileID: 1869775612}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DialogueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
