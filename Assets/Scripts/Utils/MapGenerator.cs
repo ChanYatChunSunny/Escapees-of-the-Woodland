@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -25,7 +24,7 @@ public class MapGenerator : MonoBehaviour
         Generate();
     }
 
-    private void Generate() 
+    private void Generate()
     {
         int size = GameData.GetMapSize();
         Randomizer randomizer = GameData.GetRandomizer();
@@ -38,10 +37,11 @@ public class MapGenerator : MonoBehaviour
 
         Vector2Int currLoc = Vector2Int.zero;
         bool isLocUsed;
-        Instantiate(commonTiles[0], Vector2.zero, Quaternion.identity);
+        //Instantiate(commonTiles[0], Vector2.zero, Quaternion.identity);
         usedLocs.AddLast(currLoc);
         int uniquePtr = 0;
-        while (uniquePtr < uniqueLen) 
+        //Generate unique tiles with a guaranteed path connecting them
+        while (uniquePtr < uniqueLen)
         {
             isLocUsed = true;
             Direction dir = Direction.up;
@@ -49,10 +49,10 @@ public class MapGenerator : MonoBehaviour
             {
                 dir = randomizer.GetDouble() < 0.6 ? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left);
                 Vector2Int newLoc = currLoc + DirectionOperation.DirectionToVector2Int(dir);
-                if(newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size) 
-                { 
+                if (newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size)
+                {
                     isLocUsed = true;
-                    continue; 
+                    continue;
                 }
                 foreach (Vector2Int usedLoc in usedLocs)
                 {
@@ -77,7 +77,7 @@ public class MapGenerator : MonoBehaviour
             }
             usedLocs.AddLast(currLoc);
         }
-
+        //Generate the rest of the map
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
@@ -96,6 +96,23 @@ public class MapGenerator : MonoBehaviour
                 GameObject tile = randomizer.GetDouble() < 0.8 ? commonTiles[randomizer.GetInt(0, commonLen)] : rareTiles[randomizer.GetInt(0, rareLen)];
                 Instantiate(tile, (Vector2)currLoc * 4, Quaternion.identity);
             }
+        }
+        //Generate the border
+        for (int i = 0; i < size; i++)
+        {
+            Instantiate(rareTiles[0], new Vector2(-1, i) * 4, Quaternion.identity);
+        }
+        for (int i = 0; i < size; i++)
+        {
+            Instantiate(rareTiles[0], new Vector2(i, -1) * 4, Quaternion.identity);
+        }
+        for (int i = 0; i < size; i++)
+        {
+            Instantiate(rareTiles[0], new Vector2(size, i) * 4, Quaternion.identity);
+        }
+        for (int i = 0; i < size; i++)
+        {
+            Instantiate(rareTiles[0], new Vector2(i, size) * 4, Quaternion.identity);
         }
     }
 
