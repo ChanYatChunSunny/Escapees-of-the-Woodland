@@ -17,6 +17,9 @@ public class GenerateBtnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameData.Init();
+        seedField.text = "123456";
+        mapSizeField.text = "32";
         wrongInputText.gameObject.SetActive(false);
     }
 
@@ -29,12 +32,11 @@ public class GenerateBtnController : MonoBehaviour
     public void OnClick()
     {
         wrongInputText.gameObject.SetActive(false);
-        GameData.Init();
         try
         {
             int seed = int.Parse(seedField.text);
             int mapSize = int.Parse(mapSizeField.text);
-            if (seed > 0 && mapSize >= 32) 
+            if (seed > 0 && mapSize >= 16) 
             {
                 GameData.GetRandomizer().SetSeed(seed);
                 GameData.SetMapSize(mapSize);
