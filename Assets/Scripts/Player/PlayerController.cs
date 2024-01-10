@@ -6,16 +6,21 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public const int inventorySize = 10;
+    public const float highlighterXPos = 1f;
+    public const float highlighterChangePos = -18.75f;
+    public const float highlighterInitYPos = 65f;
+    public const float highlighterFinalYPos = -66.25f;
     private string[] inventory = new string[inventorySize];
     public int inverntoryCount = 0;
     [SerializeField] float movingSpeed = 5f;
     [SerializeField] Text remainingHealth;
     public int maxHealth = 100;
     public int currentHealth;
+    public float time = 0f;
     public HealthBarController healthBarController;
     private Rigidbody2D body;
     private Animator animator;
-
+    public HighlighterController highlightController;
     // Start is called before the first frame update
     public void Start()
     {
@@ -23,13 +28,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         healthBarController.SetMaxHealth(maxHealth);
+        highlightController.SetPos(highlighterXPos, highlighterInitYPos, highlighterFinalYPos);
         Debug.Log("Player Spawn!");
     }
 
     // Update is called once per frame
     public void FixedUpdate()
     {
-        PrintFromInventory();
+        //PrintFromInventory();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         body.velocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
@@ -53,6 +59,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("walking", false);
         }
+        
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            highlightController.ModifyPos(highlighterChangePos);
+        }
+        
+        
         ModifyHealth(-1);
     }
 
