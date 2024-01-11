@@ -17,6 +17,8 @@
     }
     public Dialogue(string playerSpeech, string npcSpeech, string meta) : this(new Dialogue[0], playerSpeech, npcSpeech, meta, null) { }
 
+    public Dialogue(string playerSpeech, string npcSpeech, string meta, bool? isLeaveable) : this(new Dialogue[0], playerSpeech, npcSpeech, meta, isLeaveable) { }
+
     public Dialogue(string playerSpeech, string npcSpeech) : this(playerSpeech, npcSpeech, "") { }
 
     public Dialogue(string playerSpeech, string npcSpeech, bool? isLeaveable) : this(new Dialogue[0], playerSpeech, npcSpeech, "", isLeaveable) { }

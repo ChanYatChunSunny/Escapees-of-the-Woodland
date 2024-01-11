@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public class DialogueGraph
 {
     private Dialogue curr;
@@ -37,6 +39,7 @@ public class DialogueGraph
 
     public void SelectNext(int index)
     {
+        Debug.Log(index);
         curr = curr.Children[index];
         IsLeaveable = curr.IsLeaveable==true;
     }

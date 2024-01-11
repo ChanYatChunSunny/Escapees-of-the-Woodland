@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currTile;
     public DialogueHandler DialogueHandler { get; private set; }
     public bool[] carryingArtifacts = new bool[ArtifactsNum];
+    public bool playing;
 
     // Start is called before the first frame update
     public void Start()
@@ -42,11 +43,13 @@ public class PlayerController : MonoBehaviour
         {
             carryingArtifacts[i] = false;
         }
+        playing = true;
     }
 
     // Update is called once per frame
     public void FixedUpdate()
     {
+        if (!playing) { return; }
         PrintFromInventory();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+        if (!playing) { return; }
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             highlightController.ModifyPos(highlighterChangePos);

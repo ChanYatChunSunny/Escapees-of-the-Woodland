@@ -1492,6 +1492,7 @@ MonoBehaviour:
   healthBarController: {fileID: 831446335}
   highlightController: {fileID: 1599412203}
   carryingArtifacts: 0000000000000000
+  playing: 0
 --- !u!50 &1099329260
 Rigidbody2D:
   serializedVersion: 4
@@ -1600,6 +1601,7 @@ MonoBehaviour:
   dialogueUI: {fileID: 1961380548}
   dialogueText: {fileID: 1869775612}
   escAbleText: {fileID: 1322381264}
+  failedUI: {fileID: 1409883824}
   isInConversation: 0
 --- !u!1 &1100854355
 GameObject:
@@ -4362,6 +4364,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startUI: {fileID: 1395227803}
   successUI: {fileID: 619840036}
+  pedestalSprites:
+  - {fileID: 21300000, guid: 7aba95a2a470f0c4982357f011aa55b5, type: 3}
+  - {fileID: 21300000, guid: c67a955f563b1c24b99b31b309e13af1, type: 3}
+  - {fileID: 21300000, guid: 9ba0269093d8a514fa563ee61c3b6185, type: 3}
+  - {fileID: 21300000, guid: cf95bf6e067fce24a8f02e4b0a73b746, type: 3}
+  - {fileID: 21300000, guid: 7b5b4756a0503a045849fddbac83ac16, type: 3}
+  - {fileID: 21300000, guid: c1a7c232216d8ad46a696ef669bee2fc, type: 3}
+  - {fileID: 21300000, guid: 5f6ca195ac5fbab478a95d95004f6300, type: 3}
+  - {fileID: 21300000, guid: ed8db4e069c7cb348b7c44689b6c0378, type: 3}
 --- !u!61 &8477182432534695982
 BoxCollider2D:
   m_ObjectHideFlags: 0

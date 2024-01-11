@@ -8,9 +8,22 @@ public class SpawnTile : Tile
     private GameObject startUI;
     [SerializeField]
     private GameObject successUI;
+    [SerializeField]
+    private Sprite[] pedestalSprites;
+
+    private int obtainedArtifactsNum;
+    private bool[] submittedArtifacts;
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     public override void Start()
     {
+        obtainedArtifactsNum = 0;
+        submittedArtifacts = new bool[PlayerController.ArtifactsNum];
+        for(int i = 0; i < PlayerController.ArtifactsNum; i++)
+        {
+            submittedArtifacts[i] = false;
+        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(FadingStartUI());
     }
     private IEnumerator FadingStartUI()
@@ -37,5 +50,19 @@ public class SpawnTile : Tile
     }
     public override void Interact(PlayerController playerController)
     {
+        for(int i = 0; i < PlayerController.ArtifactsNum; i++)
+        {
+            if (playerController.carryingArtifacts[i])
+            {
+                if (!submittedArtifacts[i])
+                {
+                    obtainedArtifactsNum++;
+                    spriteRenderer.sprite = pedestalSprites[obtainedArtifactsNum];
+                    playerController.carryingArtifacts[i] = false;
+                    submittedArtifacts[i] = true;
+
+                }
+            }
+        }
     }
 }
