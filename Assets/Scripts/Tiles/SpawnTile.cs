@@ -11,13 +11,13 @@ public class SpawnTile : Tile
     [SerializeField]
     private Sprite[] pedestalSprites;
 
-    private int obtainedArtifactsNum;
+    private int submittedArtifactsNum;
     private bool[] submittedArtifacts;
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     public override void Start()
     {
-        obtainedArtifactsNum = 0;
+        submittedArtifactsNum = 0;
         submittedArtifacts = new bool[PlayerController.ArtifactsNum];
         for(int i = 0; i < PlayerController.ArtifactsNum; i++)
         {
@@ -56,13 +56,18 @@ public class SpawnTile : Tile
             {
                 if (!submittedArtifacts[i])
                 {
-                    obtainedArtifactsNum++;
-                    spriteRenderer.sprite = pedestalSprites[obtainedArtifactsNum];
+                    submittedArtifactsNum++;
+                    spriteRenderer.sprite = pedestalSprites[submittedArtifactsNum];
                     playerController.carryingArtifacts[i] = false;
                     submittedArtifacts[i] = true;
 
                 }
             }
+        }
+        if (submittedArtifactsNum > PlayerController.ArtifactsNum) 
+        {
+            playerController.playing = false;
+            successUI.SetActive(true);
         }
     }
 }

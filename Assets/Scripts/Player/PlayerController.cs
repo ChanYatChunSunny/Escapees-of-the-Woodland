@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float movingSpeed = 5f;
     [SerializeField] TMP_Text remainingHealth;
     [SerializeField] private TMP_Text actionText;
+    [SerializeField] private GameObject starveUI;
     public int maxHealth = 100;
     public int currentHealth;
     public float time = 0f;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public DialogueHandler DialogueHandler { get; private set; }
     public bool[] carryingArtifacts = new bool[ArtifactsNum];
     public bool playing;
+    private Vector2 lastPos;
+    private float healthToBeDeducted;
 
     // Start is called before the first frame update
     public void Start()
@@ -44,6 +47,9 @@ public class PlayerController : MonoBehaviour
             carryingArtifacts[i] = false;
         }
         playing = true;
+        lastPos = body.position;
+        healthToBeDeducted = 0.0f;
+        starveUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,8 +59,9 @@ public class PlayerController : MonoBehaviour
         PrintFromInventory();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        body.velocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
-
+        Vector2 newVelocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
+        body.velocity = newVelocity;
+        
         if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f))
         {
             if (horizontal > 0.0f)
@@ -74,10 +81,12 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("walking", false);
         }
-        
-        
-        
-        ModifyHealth(-1);
+
+        healthToBeDeducted += ((lastPos - body.position).magnitude)/2.0f;
+        int healthDeductingNow = (int)healthToBeDeducted;
+        ModifyHealth(-healthDeductingNow);
+        healthToBeDeducted -= healthDeductingNow;
+        lastPos = body.position;
     }
 
     public void Update()
@@ -98,9 +107,6 @@ public class PlayerController : MonoBehaviour
         {
             ConsumeAid();
         }
-        
-        
-        ModifyHealth(-1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -135,7 +141,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                inventoryValue[i].text = "- Empty " + i.ToString();
+                inventoryValue[i].text = "- Empty ";
             }
         }
     }
@@ -154,8 +160,8 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory[i] == null)
             {
-                inventory[inverntoryCount] = element;
-                inventoryValue[inverntoryCount++].text = element.GetName();
+                inventory[i] = element;
+                inventoryValue[i].text = element.GetName();
                 added = true;
                 break;
             }
@@ -208,6 +214,8 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0;
             healthBarController.SetHealth(currentHealth);
             remainingHealth.text = "HP: " + currentHealth.ToString();
+            playing = false;
+            starveUI.SetActive(true);
         }
     }
 }
