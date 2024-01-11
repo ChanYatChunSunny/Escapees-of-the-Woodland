@@ -8,11 +8,9 @@ public class PaulTile : Tile
     private GameObject paul;
 
     private DialogueGraph dialogueGraph;
-    private bool startedTalk;
     // Start is called before the first frame update
     public override void Start()
     {
-        startedTalk = false;
         Instantiate(paul, this.transform.position + new Vector3(0.2f, 1, 1), Quaternion.identity);
         Dialogue start = new Dialogue("Hello", "Hello! My name is Paul! I love helping people! Anything I can help you with?", true);
         Dialogue hiAndAnythingNeedHelp = new Dialogue("Hello", "Anything I can help you with?", false);
@@ -44,10 +42,7 @@ public class PaulTile : Tile
 
     public override void Interact(PlayerController playerController)
     {
-        if (!startedTalk)
-        {
-            playerController.DialogueHandler.dialogueGraph = dialogueGraph;
-        }
+        playerController.DialogueHandler.dialogueGraph = dialogueGraph;
         playerController.DialogueHandler.isInConversation = true;
     }
 }
