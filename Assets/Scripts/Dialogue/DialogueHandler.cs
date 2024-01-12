@@ -13,6 +13,8 @@ public class DialogueHandler : MonoBehaviour
 
     [SerializeField]
     private GameObject failedUi;
+    [SerializeField]
+    private GameObject failedUi_Louis;
     public bool isInConversation;
 
     public DialogueGraph dialogueGraph { private get;  set; }
@@ -27,6 +29,7 @@ public class DialogueHandler : MonoBehaviour
         dialogueUI.SetActive(false);
         escAbleText.SetActive(false);
         failedUi.SetActive(false);
+        failedUi_Louis.SetActive(false);    
     }
 
     // Update is called once per frame
@@ -115,14 +118,18 @@ public class DialogueHandler : MonoBehaviour
             playerController.carryingArtifacts[artifactIndex] = true;
             playerController.SetActionText("You had gained an artifact. Return it to the pedestal!");
             playerController.FlashActionText();
-        }else if (meta.Equals("leave_dialogue"))
+        } else if (meta.Equals("leave_dialogue"))
         {
             isInConversation = false;
             dialogueUI.SetActive(false);
-        }else if (meta.Equals("fail_game"))
+        } else if (meta.Equals("fail_game"))
         {
             playerController.playing = false;
             failedUi.SetActive(true);
+        } else if (meta.Equals("fail_game_Louis")) 
+        {
+            playerController.playing = false;
+            failedUi_Louis.SetActive(true);
         }
     }
 
