@@ -129,7 +129,7 @@ public class DialogueHandler : MonoBehaviour
         } else if (meta.Equals("fail_game_injury")) 
         {
             playerController.playing = false;
-            failedConnectUi.SetActive(true);
+            failedInjuryUi.SetActive(true);
         }
     }
 
