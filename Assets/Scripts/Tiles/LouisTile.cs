@@ -18,6 +18,8 @@ public class LouisTile : Tile
         Dialogue objective = new Dialogue("Thanks, but no need. I'm here to collect all artifacts, so we can escape from the woodland.", "You mean this one ?", "Louis shows his artifact, the dumbbells", false);
         Dialogue getArtifact = new Dialogue("Yes!", "Here you go!", "gain_artifact 1");
 
+        Dialogue greetingWithQuestion = new Dialogue("Nice to meet you, You are strong, Why do you got a giant water bottle?", "Because I am a firefighter and love doing sports so I need a lot of water", true);
+        Dialogue louisGetMad; 
 
     }
 
