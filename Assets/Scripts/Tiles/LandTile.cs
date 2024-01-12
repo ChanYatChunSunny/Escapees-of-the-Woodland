@@ -15,7 +15,7 @@ public class LandTile : Tile
         {
             float x = transform.position.x + (float)(randomizer.GetDouble() < 0.5 ? randomizer.GetDouble() : -randomizer.GetDouble());
             float y = transform.position.y + (float)(randomizer.GetDouble() < 0.5 ? randomizer.GetDouble() : -randomizer.GetDouble());
-            Instantiate(aids[randomizer.GetInt(0, aids.Length - 1)], new Vector2(x, y), Quaternion.identity);
+            Instantiate(aids[randomizer.GetInt(0, aids.Length)], new Vector2(x, y), Quaternion.identity);
         }
 
     }
