@@ -64,7 +64,8 @@ public class LucyTile : Tile
         start.Children = new Dialogue[] {alwaysWant, noBelieve, freeFood};
 
         Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
-        freeFood.Children = new Dialogue[] { noooo };
+        Dialogue nooooByHit = new Dialogue("Noooo!", "", "fail_game_injury");
+        freeFood.Children = new Dialogue[] { nooooByHit };
         youFool.Children = new Dialogue[] { noooo };
         dialogueGraph = new DialogueGraph(start);
     }

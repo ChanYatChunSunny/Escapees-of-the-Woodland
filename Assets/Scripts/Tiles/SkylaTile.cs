@@ -50,13 +50,14 @@ public class SkylaTile : Tile
         Dialogue cantFeedHerForever = new Dialogue("I can't feed you forever! That is the best I can do! You should work hard yourself", "You think I hadn't tried? I hate people like you who think you are always right. Good bye, I am not helping you!");
         Dialogue helpFindWork = new Dialogue("I can help you find a job, I know some friends that are in need of employees like you.", "Really? Even a woman like me?... I don't believe you.");
 
-        Dialogue destroyTent = new Dialogue("Enough! Just pick up your tent and leave this awful place! (Forcibly destroy her tent)", "What are you doing!? Cool! Now I lost my home because of you! I certainly won't help you at all!");
+        Dialogue destroyTent = new Dialogue("Enough! Just pick up your tent and leave this awful place! (Forcibly destroy her tent)", "What are you doing!? Now I lost my home because of you! (Entered a physical fight with the player)");
         grossTent.Children = new Dialogue[] { destroyTent };
         promise.Children = new Dialogue[] { cantFeedHerForever, helpFindWork, destroyTent };
         
-        Dialogue Nooo = new Dialogue("Nooo!", "", "fail_game");
-        destroyTent.Children = new Dialogue[] { Nooo };
-        cantFeedHerForever.Children = new Dialogue[] { Nooo };
+        Dialogue nooo = new Dialogue("Nooo!", "", "fail_game");
+        Dialogue nooooByHit = new Dialogue("Noooo!", "", "fail_game_injury");
+        destroyTent.Children = new Dialogue[] { nooooByHit };
+        cantFeedHerForever.Children = new Dialogue[] { nooo };
 
         Dialogue yesTheyReallyHire = new Dialogue("Yes, they really will hire people like you. Trust me. Now, give me the thing at your back so we can get out of here", "Let me think for a moment first...");
         helpFindWork.Children = new Dialogue[] { yesTheyReallyHire, destroyTent };

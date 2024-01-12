@@ -12,9 +12,9 @@ public class DialogueHandler : MonoBehaviour
     private GameObject escAbleText;
 
     [SerializeField]
-    private GameObject failedUi;
+    private GameObject failedConnectUi;
     [SerializeField]
-    private GameObject failedUi_Louis;
+    private GameObject failedInjuryUi;
     public bool isInConversation;
 
     public DialogueGraph dialogueGraph { private get;  set; }
@@ -28,8 +28,8 @@ public class DialogueHandler : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         dialogueUI.SetActive(false);
         escAbleText.SetActive(false);
-        failedUi.SetActive(false);
-        failedUi_Louis.SetActive(false);    
+        failedConnectUi.SetActive(false);
+        failedInjuryUi.SetActive(false);    
     }
 
     // Update is called once per frame
@@ -125,11 +125,11 @@ public class DialogueHandler : MonoBehaviour
         } else if (meta.Equals("fail_game"))
         {
             playerController.playing = false;
-            failedUi.SetActive(true);
-        } else if (meta.Equals("fail_game_Louis")) 
+            failedConnectUi.SetActive(true);
+        } else if (meta.Equals("fail_game_injury")) 
         {
             playerController.playing = false;
-            failedUi_Louis.SetActive(true);
+            failedConnectUi.SetActive(true);
         }
     }
 
