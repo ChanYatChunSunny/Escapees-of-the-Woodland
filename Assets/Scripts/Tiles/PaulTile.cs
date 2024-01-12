@@ -18,7 +18,7 @@ public class PaulTile : Tile
         
 
         Dialogue giveArtifact = new Dialogue("Hmm... Can you give me that artifact you are holding? We need gather 8 of them to escape this place!", "Sure! Here you go!", "gain_artifact 0");
-        Dialogue thank = new Dialogue("Thank you so much! We shoul be able to get out of this place soon!", "I am glad to help! I want to leave this place as well. Anything else I can help?", true);
+        Dialogue thank = new Dialogue("Thank you so much! We should be able to get out of this place soon!", "I am glad to help! I want to leave this place as well. Anything else I can help?", true);
         giveArtifact.Children = new Dialogue[] { thank };
         thank.Children = new Dialogue[] { nothingNeedHelp };
 
