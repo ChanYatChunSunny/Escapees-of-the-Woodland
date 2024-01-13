@@ -20,7 +20,7 @@ public class AnnabelleTile : Tile
         Dialogue wrongAns2 = new Dialogue("Demolition worker!", "Ahh! You are a lier! You are trying to hurt me! (Annabelle ran away with her shield)");
         Dialogue aboutLouis = new Dialogue("Why you seems to be so afarid?", "I... Was a brave girl when I was young... But then there was a fire... Louis saved me.");
         Dialogue waa = new Dialogue("You are a scaredy cat? Waaa!", "AHHH!! (Annabelle ran away with her shield)");
-        Dialogue gainArtifact = new Dialogue("Okay, Annabelle. I know you are scared about this place. I'm here for artifact. We need it to escape from here. Can you give me yours? Louis gave me his too.", "Okay... I... believe in Louis", "gain_artifact 3");
+        Dialogue gainArtifact = new Dialogue("Okay, Annabelle. I know you are scared about this place. I'm here for artifact so we can escape from here. Can you give me yours? Louis gave me his too.", "Okay... I... believe in Louis", "gain_artifact 3");
         Dialogue teaseAnna = new Dialogue("Why are so nervous? Such a funny person, ha, ha", "(Annabelle starts crying and doesn't give any response to the player)");
         Dialogue askName = new Dialogue("Can I know your name?", "Ann ... No", true);
         Dialogue thankYou = new Dialogue("Thank you!", "", "leave_dialogue", true);
