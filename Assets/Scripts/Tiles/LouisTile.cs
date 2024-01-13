@@ -14,8 +14,8 @@ public class LouisTile : Tile
     {
         Instantiate(louis, this.transform.position + new Vector3(0.2f, -0.2f, 1), Quaternion.identity);
         Dialogue start = new Dialogue("Hello", "Hi I am Louis, nice to meet you", true);
-        Dialogue greeting = new Dialogue("Nice to meet you! You look so strong!", "Thanks. I used to be a firefighter. Do you need some food? I got a lots", true);
-        Dialogue objective = new Dialogue("Thanks, but I'm here to collect all artifacts, so we can rescue everyone from the Woodland.", "You mean this one?", false);
+        Dialogue greeting = new Dialogue("Nice to meet you! You look so strong!", "Thanks. I used to be a firefighter. Do you need some food? I got a lot of them.", true);
+        Dialogue objective = new Dialogue("Thanks, but I'm here to collect all artifacts to rescue everyone from the Woodland.", "You mean this one?", false);
         Dialogue getArtifact = new Dialogue("Yes!", "Here you go!", "gain_artifact 2");
         Dialogue acceptFood = new Dialogue("Yes, please", "Here you go", "change_health 10", false);
         Dialogue btw = new Dialogue("By the way, I need to collect an artifact from you to rescue us and the everyone else fom this palce!", "You mean this?");
@@ -34,7 +34,7 @@ public class LouisTile : Tile
         objective.Children = new Dialogue[] {getArtifact};
         getArtifact.Children = new Dialogue[] {thank};
         acceptFood.Children = new Dialogue[] { btw, allTheFood };
-        greetingWithQuestion.Children = new Dialogue[] {louisGetMad};
+        greetingWithQuestion.Children = new Dialogue[] {louisGetMad, btw };
         dialogueGraph = new DialogueGraph(start);
 
     }
