@@ -19,10 +19,11 @@ public class AnnabelleTile : Tile
         Dialogue wrongAns1 = new Dialogue("Construction worker!", "Ahh! You are a lier! You are trying to hurt me! (Annabelle ran away with her shield)");
         Dialogue wrongAns2 = new Dialogue("Demolition worker!", "Ahh! You are a lier! You are trying to hurt me! (Annabelle ran away with her shield)");
         Dialogue aboutLouis = new Dialogue("Why you seems to be so afarid?", "I... Was a brave girl when I was young... But then there was a fire... Louis saved me.");
+        Dialogue waa = new Dialogue("You are a scaredy cat? Waaa!", "AHHH!! (Annabelle ran away with her shield)");
         Dialogue gainArtifact = new Dialogue("Okay, Annabelle. I know you are scared about this place. I'm here for artifact. We need it to escape from here. Can you give me yours? Louis gave me his too.", "Okay... I... believe in Louis", "gain_artifact 3");
         Dialogue teaseAnna = new Dialogue("Why are so nervous? Such a funny person, ha, ha", "(Annabelle starts crying and doesn't give any response to the player)");
         Dialogue askName = new Dialogue("Can I know your name?", "Ann ... No", true);
-        Dialogue thankYou = new Dialogue("Thank you!", "", true);
+        Dialogue thankYou = new Dialogue("Thank you!", "", "leave_dialogue", true);
         Dialogue noPatient = new Dialogue("Stop wasting our time! Give me the thing you are holding then we are over!", "HELP! Someone is trying to hurt me! (Annabelle ran away with her shield)");
         Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
 
@@ -30,7 +31,7 @@ public class AnnabelleTile : Tile
         start.Children = new Dialogue[] {friendilyTone, teaseAnna, askName};
         friendilyTone.Children = new Dialogue[] { wrongAns0, wrongAns1, correctAnswer, wrongAns2 };
         correctAnswer.Children = new Dialogue[] { aboutLouis };
-        aboutLouis.Children = new Dialogue[] { gainArtifact };
+        aboutLouis.Children = new Dialogue[] { waa, gainArtifact };
         gainArtifact.Children = new Dialogue[] {thankYou};
         askName.Children = new Dialogue[] { noPatient, friendilyTone };
 
@@ -39,6 +40,7 @@ public class AnnabelleTile : Tile
         wrongAns1.Children = new Dialogue[] { noooo };
         wrongAns2.Children = new Dialogue[] { noooo };
         noPatient.Children = new Dialogue[] { noooo };
+        waa.Children = new Dialogue[] { noooo };
         dialogueGraph = new DialogueGraph(start);
     }
 
