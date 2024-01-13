@@ -77,6 +77,7 @@ public class DialogueHandler : MonoBehaviour
         }
         else if (isInConversation)
         {
+            playerController.playing = false;
             if (Input.GetKeyUp(KeyCode.Alpha0) || Input.GetKeyUp(KeyCode.Keypad0))
             {
                 if (optionsLen > 0)
@@ -118,6 +119,7 @@ public class DialogueHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         dialogueUI.gameObject.SetActive(false);
+        playerController.playing = true;
     }
 
     private void HandleMeta(string meta)
@@ -132,6 +134,7 @@ public class DialogueHandler : MonoBehaviour
         {
             isInConversation = false;
             dialogueUI.SetActive(false);
+            playerController.playing = true;
         } else if (meta.Equals("fail_game"))
         {
             playerController.playing = false;
