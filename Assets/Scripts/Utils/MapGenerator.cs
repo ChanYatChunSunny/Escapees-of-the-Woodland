@@ -15,6 +15,10 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private GameObject[] uniqueTiles;
 
+    [SerializeField]
+    private GameObject badGenUI;
+
+    private const int MaxTrialCount = 32;
 
 
     // Start is called before the first frame update
@@ -22,6 +26,7 @@ public class MapGenerator : MonoBehaviour
     {
         GameData.Init();
         Generate();
+        badGenUI.SetActive(false);
     }
 
     private void Generate()
@@ -45,7 +50,8 @@ public class MapGenerator : MonoBehaviour
         while (uniquePtr < uniqueLen)
         {
             isLocUsed = true;
-            Direction dir = Direction.up;
+            Direction dir = randomizer.GetDouble() < 0.5 ? Direction.up: Direction.right;
+            int checkCounter = 0;
             while (isLocUsed)
             {
                 isLocUsed = false;
@@ -64,10 +70,14 @@ public class MapGenerator : MonoBehaviour
                         break;
                     }
                 }
-                //TODO: Add a warning system for failed generation.
+                checkCounter++;
+                if(checkCounter >= MaxTrialCount)
+                {
+                    badGenUI.SetActive(true);
+                }
                 currLoc = newLoc;
             }
-            if (randWalkCounter > randomizer.GetInt(6, 12))
+            if (randWalkCounter > randomizer.GetInt(size/4, size/2))
             {
                 Instantiate(uniqueTiles[uniquePtr], (Vector2)currLoc * 4, Quaternion.identity);
                 uniquePtr++;

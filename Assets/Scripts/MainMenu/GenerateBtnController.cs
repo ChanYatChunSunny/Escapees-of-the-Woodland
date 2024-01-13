@@ -19,7 +19,7 @@ public class GenerateBtnController : MonoBehaviour
     {
         GameData.Init();
         seedField.text = "123456";
-        mapSizeField.text = "32";
+        mapSizeField.text = "16";
         wrongInputText.gameObject.SetActive(false);
     }
 

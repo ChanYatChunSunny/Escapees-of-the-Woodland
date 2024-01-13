@@ -112,7 +112,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void HandleMeta(string meta)
     {
-        if (meta.StartsWith("gain_artifact"))
+        if (meta.StartsWith("gain_artifact "))
         {
             int artifactIndex = int.Parse(meta.Replace("gain_artifact ", ""));
             playerController.carryingArtifacts[artifactIndex] = true;
@@ -130,6 +130,18 @@ public class DialogueHandler : MonoBehaviour
         {
             playerController.playing = false;
             failedInjuryUi.SetActive(true);
+        } else if(meta.StartsWith("change_health "))
+        {
+            int change = int.Parse(meta.Replace("change_health ", ""));
+            playerController.ModifyHealth(change);
+            if(change > 0)
+            {
+                playerController.SetActionText("Your stomach feels more full now.");
+            }
+            else
+            {
+                playerController.SetActionText("You felt more hungry now.");
+            }
         }
     }
 

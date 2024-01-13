@@ -12,20 +12,33 @@ public class AnnabelleTile : Tile
     public override void Start()
     {
         Instantiate(annabelle, this.transform.position, Quaternion.identity);
-        Dialogue start = new Dialogue("Hi", "Who are you... Stay away from me... I only know Louis, the one who save me before", "Annabelle hides herself behind a shield", true);
+        Dialogue start = new Dialogue("Hi", "Who are you... Stay away from me... I will only let Louis come close to me!", "(Annabelle hides herself behind a shield)", true);
         Dialogue friendilyTone = new Dialogue("I won't harm you. I am Louis's friend. What is your name?", "You really .... Louis' friends? Then ... what was his ... occupation?", true);
-        Dialogue directAnswer = new Dialogue("Firefighter!", "Cor ... rect I am Anna.. belle", true);
-        Dialogue gainArtifact = new Dialogue("Hello, Annabelle. I'm here for artifact. We can escape from this woodland after having 8 artifacts. Can you give me yours? Louis gave me his too. Now, you have a chance to save Louis from here!", "I .. believe in ... Louis", "gain_artifact 4");
-        Dialogue teaseAnna = new Dialogue("Why do you hide behind the shield? Such a funny person, ha, ha", "(Annabelle starts crying and doesn't give any response to the player)", "fail_game");
+        Dialogue correctAnswer = new Dialogue("Firefighter!", "Cor ... rect I am Anna.. belle", true);
+        Dialogue wrongAns0 = new Dialogue("Waterfighter!", "What are you talking about!?");
+        Dialogue wrongAns1 = new Dialogue("Construction worker!", "Ahh! You are a lier! You are trying to hurt me! (Annabelle ran away with her shield)");
+        Dialogue wrongAns2 = new Dialogue("Demolition worker!", "Ahh! You are a lier! You are trying to hurt me! (Annabelle ran away with her shield)");
+        Dialogue aboutLouis = new Dialogue("Why you seems to be so afarid?", "I... Was a brave girl when I was young... But then there was a fire... Louis saved me.");
+        Dialogue gainArtifact = new Dialogue("Okay, Annabelle. I know you are scared about this place. I'm here for artifact. We need it to escape from here. Can you give me yours? Louis gave me his too.", "Okay... I... believe in Louis", "gain_artifact 3");
+        Dialogue teaseAnna = new Dialogue("Why are so nervous? Such a funny person, ha, ha", "(Annabelle starts crying and doesn't give any response to the player)");
         Dialogue askName = new Dialogue("Can I know your name?", "Ann ... No", true);
-        Dialogue hesitate = new Dialogue("What is his occupation? Wait, I need to think for a while. Fire... (player was interrupted by Annabelle)", "You lier! (Annabelle hides behind her shield and does not talk to the player again)", "fail_game");
         Dialogue thankYou = new Dialogue("Thank you!", "", true);
+        Dialogue noPatient = new Dialogue("Stop wasting our time! Give me the thing you are holding then we are over!", "HELP! Someone is trying to hurt me! (Annabelle ran away with her shield)");
+        Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
+
 
         start.Children = new Dialogue[] {friendilyTone, teaseAnna, askName};
-        friendilyTone.Children = new Dialogue[] { directAnswer, hesitate };
-        directAnswer.Children = new Dialogue[] {gainArtifact};
+        friendilyTone.Children = new Dialogue[] { correctAnswer, wrongAns0, wrongAns1, wrongAns2 };
+        correctAnswer.Children = new Dialogue[] { aboutLouis };
+        aboutLouis.Children = new Dialogue[] { gainArtifact };
         gainArtifact.Children = new Dialogue[] {thankYou};
-        askName.Children = new Dialogue[] {friendilyTone};
+        askName.Children = new Dialogue[] { noPatient, friendilyTone };
+
+        teaseAnna.Children = new Dialogue[] { noooo };
+        wrongAns0.Children = new Dialogue[] { thankYou };
+        wrongAns1.Children = new Dialogue[] { noooo };
+        wrongAns2.Children = new Dialogue[] { noooo };
+        noPatient.Children = new Dialogue[] { noooo };
         dialogueGraph = new DialogueGraph(start);
     }
 

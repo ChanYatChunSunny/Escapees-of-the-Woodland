@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnTile : Tile
@@ -9,11 +12,14 @@ public class SpawnTile : Tile
     [SerializeField]
     private GameObject successUI;
     [SerializeField]
+    private TMP_Text timerText;
+    [SerializeField]
     private Sprite[] pedestalSprites;
 
     private int submittedArtifactsNum;
     private bool[] submittedArtifacts;
     private SpriteRenderer spriteRenderer;
+    private Stopwatch timer;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -24,6 +30,7 @@ public class SpawnTile : Tile
             submittedArtifacts[i] = false;
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
+        timer = new Stopwatch();
         StartCoroutine(FadingStartUI());
     }
     private IEnumerator FadingStartUI()
@@ -67,6 +74,10 @@ public class SpawnTile : Tile
         if (submittedArtifactsNum > PlayerController.ArtifactsNum) 
         {
             playerController.playing = false;
+            timer.Stop();
+            int min = (int)timer.ElapsedMilliseconds / 60000;//Int automatically round down
+            int sec = (int)(timer.ElapsedMilliseconds - (min * 60000)) / 1000;
+            timerText.text = "Time spent: "+min+":"+sec;
             successUI.SetActive(true);
         }
     }

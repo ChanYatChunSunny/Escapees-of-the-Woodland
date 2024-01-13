@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -82,7 +80,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("walking", false);
         }
 
-        healthToBeDeducted += ((lastPos - body.position).magnitude)/2.0f;
+        healthToBeDeducted += ((lastPos - body.position).magnitude)/2.8f;
+        //Only deduct a rounded-down int amount of health each time
         int healthDeductingNow = (int)healthToBeDeducted;
         ModifyHealth(-healthDeductingNow);
         healthToBeDeducted -= healthDeductingNow;
@@ -168,7 +167,8 @@ public class PlayerController : MonoBehaviour
         }
         if(!added)
         {
-            Debug.Log("Inventory is full");
+            SetActionText("Inventory is full");
+            FlashActionText();
         }
     }
     public void SetActionText(string str)

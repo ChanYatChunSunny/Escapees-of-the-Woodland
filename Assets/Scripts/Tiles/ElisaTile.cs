@@ -12,18 +12,27 @@ public class ElisaTile : Tile
     {
         Instantiate(elisa, this.transform.position + new Vector3(0.1f, 0.3f, 1), Quaternion.identity);
         Dialogue start = new Dialogue("Hi", "Hi I am  Elisa, I bet you do know me!", true);
-        Dialogue knowHer = new Dialogue("Yes, you are that famous video creator who got famous by shooting a vlog to record yourself overcoming the Himalayas successfully", "Yes, that's me! Ha ha.", true);
+        Dialogue knowHer = new Dialogue("Yes, you are that famous vlogger who got famous by shooting a vlog to record yourself overcoming the Himalayas successfully", "Yes, that's me! Ha ha.", true);
         Dialogue excited = new Dialogue("You are my idol! I am coming to collect all 8 artifacts so everyone here can escape from here. Wait is that the latest camera!!", "You know camera?", true);
         Dialogue knowPhoto = new Dialogue("Yes, I love taking photos, wishing to try and use this camera one day!", "You said that you want to use it. Here have a chance, if you promise to be the cameraman and help me record all my experience in this woodland. I'll give the artifact to you.", true);
-        Dialogue gainArtifact = new Dialogue("sure!", "Here you go", "gain_artifact 6", true);
-        Dialogue brokeCamera = new Dialogue("Of course, can I try and use the camera?", "What the heck!! ( Player is too excited and slip off to the ground, the camera broke)", "fail_game");
-        Dialogue dontKnowHer = new Dialogue("Sorry, I don't know you", "For real?! (Elisa feels extremely embarrassed by digging a hole and hiding into it)", "fail_game");
-        Dialogue wrongANswer = new Dialogue("Yes, you are the one who created a video and traveled the world in 80 days", "What, do you really know me? That's is shot by my biggest rival Elsa!", "fail_game");
-        Dialogue takePhoto = new Dialogue("Can we take a photo?", "player and Elisa talk together happily and later get the artifact successfully", "gain_artifact 6");
-        start.Children = new Dialogue[] {knowHer, dontKnowHer, wrongANswer};
+        Dialogue gainArtifact = new Dialogue("sure!", "Here you go", "gain_artifact 4", true);
+
+        Dialogue brokeCamera = new Dialogue("Of course, can I try and use the camera?", "What the heck!! (Player is too excited and slip off to the ground, the camera broke)", "fail_game");
+        Dialogue dontKnowHer = new Dialogue("Sorry, I don't know you", "For real?! (Elisa feels extremely embarrassed and refused to talk to the player anymore)", "fail_game");
+        Dialogue wrongAns = new Dialogue("Yes, you are the one who created a video and traveled the world in 80 days", "What, do you really know me? That's is shot by my biggest rival Elsa!", "fail_game");
+
+        Dialogue takePhoto = new Dialogue("Can we take a photo?", "player and Elisa talk together happily and later get the artifact successfully", "gain_artifact 4");
+        
+        
+        Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
+        start.Children = new Dialogue[] {knowHer, dontKnowHer, wrongAns};
         knowHer.Children = new Dialogue[] {excited, takePhoto};
         excited.Children = new Dialogue[] {knowPhoto};
         knowPhoto.Children = new Dialogue[] {brokeCamera, gainArtifact};
+        brokeCamera.Children = new Dialogue[] { noooo };
+        dontKnowHer.Children = new Dialogue[] { noooo };
+        wrongAns.Children = new Dialogue[] { noooo };
+
         dialogueGraph = new DialogueGraph(start);
     }
 
