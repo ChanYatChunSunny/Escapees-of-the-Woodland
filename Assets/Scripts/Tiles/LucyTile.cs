@@ -43,7 +43,7 @@ public class LucyTile : Tile
             "There are many springs that possess unique composition with extraordinary healing properties. These springs can only be the physical manifestations of Starflame's divine power...");
 
         religiousTalks[2] = new Dialogue("...",
-            "Scientists attributed the change in seasons to the he tilt of the Earth's axis. However, it is impossible because... It is actually Starflame racing across its holy race court that resulted in the endless loop of seasons. Without them, we would be in perpetual winter...");
+            "Scientists attributed the change in seasons to the tilt of the Earth's axis. However, it is impossible because... It is actually Starflame racing across its holy race court that resulted in the endless loop of seasons. Without them, we would be in perpetual winter...");
 
         religiousTalks[3] = new Dialogue("...",
             "Breeze in the world is actually a result of Starflame as they run through the sky... Without them, the Earth would eventually become a windless oven that kill all living beings...");
