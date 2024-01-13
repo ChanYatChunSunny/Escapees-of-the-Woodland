@@ -73,6 +73,7 @@ public class DialogueHandler : MonoBehaviour
             {
                 isInConversation = false;
                 dialogueUI.SetActive(false);
+                playerController.playing = true;
             }
         }
         else if (isInConversation)
@@ -117,7 +118,7 @@ public class DialogueHandler : MonoBehaviour
 
     private IEnumerator DelayedHideDialogue()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
         dialogueUI.gameObject.SetActive(false);
         playerController.playing = true;
     }
