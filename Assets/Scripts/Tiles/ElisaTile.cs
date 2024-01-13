@@ -35,7 +35,7 @@ public class ElisaTile : Tile
         dontKnowHer.Children = new Dialogue[] { noooo };
         wrongAns.Children = new Dialogue[] { noooo };
         agree.Children = new Dialogue[] { askArtifact };
-        takePhoto.Children = new Dialogue[] { takePhoto };
+        takePhoto.Children = new Dialogue[] { askArtifact };
         askArtifact.Children = new Dialogue[] { thank };
 
         dialogueGraph = new DialogueGraph(start);
