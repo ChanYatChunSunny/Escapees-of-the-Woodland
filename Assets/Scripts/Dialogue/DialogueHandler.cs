@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -38,7 +39,10 @@ public class DialogueHandler : MonoBehaviour
         if(dialogueGraph == null) { return; }
         if (dialogueGraph.CheckIsEnded()) 
         {
-            dialogueUI.SetActive(false);
+            if (dialogueUI.activeInHierarchy)
+            {
+                StartCoroutine(DelayedHideDialogue());
+            }
             return;
         }
         if (!isInConversation) { return; }
@@ -108,6 +112,12 @@ public class DialogueHandler : MonoBehaviour
         dialogueGraph.SelectNext(option);
         string meta = dialogueGraph.GetCurrMeta();
         HandleMeta(meta);
+    }
+
+    private IEnumerator DelayedHideDialogue()
+    {
+        yield return new WaitForSeconds(4);
+        dialogueUI.gameObject.SetActive(false);
     }
 
     private void HandleMeta(string meta)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RulesBtnController : MonoBehaviour
+public class ControlsBtnController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,6 @@ public class RulesBtnController : MonoBehaviour
 
     public void OnClick()
     {
-        SceneManager.LoadScene("RulesScene");
+        SceneManager.LoadScene("ControlsScene");
     }
 }
