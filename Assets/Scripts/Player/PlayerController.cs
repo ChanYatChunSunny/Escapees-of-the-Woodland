@@ -53,7 +53,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void FixedUpdate()
     {
-        if (!playing) { return; }
+        if (!playing) {
+            body.velocity = Vector2.zero;
+            animator.SetBool("walking", false);
+            return;
+        }
         PrintFromInventory();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
