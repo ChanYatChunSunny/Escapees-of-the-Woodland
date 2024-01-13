@@ -1555,7 +1555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &619840037
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6349,7 +6349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000002861, y: -41.67}
+  m_AnchoredPosition: {x: 0.0000061989, y: -29.941}
   m_SizeDelta: {x: 611.2035, y: 83.3409}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1830408119
@@ -6373,7 +6373,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Thank you for playing the game\n\nCreators: \nSunny Chan & Jimmy Lam\nUsed
-    assets:\n"
+    assets:\nhttps://szadiart.itch.io/3-direction-npc-characters\nhttps://crusenho.itch.io/complete-gui-essential-pack\nhttps://admurin.itch.io/nature-trees\nhttps://shikashipx.itch.io/shikashis-fantasy-icons-pack"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6400,8 +6400,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
