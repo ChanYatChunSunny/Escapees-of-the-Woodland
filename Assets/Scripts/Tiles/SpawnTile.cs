@@ -18,8 +18,8 @@ public class SpawnTile : Tile
 
     private int submittedArtifactsNum;
     private bool[] submittedArtifacts;
-    private SpriteRenderer spriteRenderer;
     private Stopwatch timer;
+    private Animator animator;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -29,7 +29,7 @@ public class SpawnTile : Tile
         {
             submittedArtifacts[i] = false;
         }
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         timer = new Stopwatch();
         timer.Start();
         StartCoroutine(FadingStartUI());
@@ -65,7 +65,7 @@ public class SpawnTile : Tile
                 if (!submittedArtifacts[i])
                 {
                     submittedArtifactsNum++;
-                    spriteRenderer.sprite = pedestalSprites[submittedArtifactsNum];
+                    animator.SetInteger("submittedArtifactsNum", submittedArtifactsNum);
                     playerController.carryingArtifacts[i] = false;
                     submittedArtifacts[i] = true;
 
@@ -75,11 +75,16 @@ public class SpawnTile : Tile
         if (submittedArtifactsNum >= PlayerController.ArtifactsNum) 
         {
             playerController.playing = false;
-            timer.Stop();
-            int min = (int)timer.ElapsedMilliseconds / 60000;//Int automatically round down
-            int sec = (int)(timer.ElapsedMilliseconds - (min * 60000)) / 1000;
-            timerText.text = "Time spent: "+min+":"+sec;
-            successUI.SetActive(true);
+            StartCoroutine(EndingSequence());
         }
+    }
+    private IEnumerator EndingSequence()
+    {
+        yield return new WaitForSeconds(2);
+        timer.Stop();
+        int min = (int)timer.ElapsedMilliseconds / 60000;//Int automatically round down
+        int sec = (int)(timer.ElapsedMilliseconds - (min * 60000)) / 1000;
+        timerText.text = "Time spent: " + min + ":" + sec;
+        successUI.SetActive(true);
     }
 }
