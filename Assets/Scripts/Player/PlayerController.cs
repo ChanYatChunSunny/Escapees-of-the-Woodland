@@ -6,10 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public const int inventorySize = 8;
     public const int ArtifactsNum = 7;
-    [SerializeField] float highlighterXPos = 7.7442f;
-    [SerializeField] float highlighterChangePos = -31.25f;
-    [SerializeField] float highlighterInitYPos = 55f;
-    [SerializeField] float highlighterFinalYPos = -163.75f;
     private Aid[] inventory = new Aid[inventorySize];
     public TMP_Text[] inventoryValue = new TMP_Text[inventorySize];
     public int inverntoryCount = 0;
@@ -39,7 +35,7 @@ public class PlayerController : MonoBehaviour
         DialogueHandler = GetComponent<DialogueHandler>();
         currentHealth = maxHealth;
         healthBarController.SetMaxHealth(maxHealth);
-        highlightController.SetPos(highlighterXPos, highlighterInitYPos, highlighterFinalYPos);
+        highlightController.SetPos();
         for(int i = 0; i < 8; i++)
         {
             carryingArtifacts[i] = false;
@@ -97,7 +93,7 @@ public class PlayerController : MonoBehaviour
         if (!playing) { return; }
         if (Input.GetKeyUp(KeyCode.Tab))
         {
-            highlightController.ModifyPos(highlighterChangePos);
+            highlightController.ModifyPos();
         }
         else if (Input.GetKeyUp(KeyCode.T))
         {

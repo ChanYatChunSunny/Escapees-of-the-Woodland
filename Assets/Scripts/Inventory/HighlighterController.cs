@@ -5,33 +5,31 @@ using UnityEngine.UIElements;
 
 public class HighlighterController : MonoBehaviour
 {
-    private float initPosX;
-    private float initPosY;
-    private float finalPosY;
-    private float currentPosY;
+    [SerializeField] private float initXPos = 7.7442f;
+    [SerializeField] private float initYPos = 55f;
+    [SerializeField] private float offset = -31.25f;
+    [SerializeField] private float finalYPos = -163.75f;
+    private float currentYPos;
     private int count = 0;
 
     //function to set the position of the highlighter
-    public void SetPos(float initPosX, float initPosY, float finalPosY)
+    public void SetPos()
     {
-        this.initPosX = initPosX;
-        this.initPosY = initPosY;
-        this.finalPosY = finalPosY;
-        currentPosY = initPosY;
-        GetComponent<RectTransform>().anchoredPosition = new Vector2(initPosX, initPosY);
+        GetComponent<RectTransform>().anchoredPosition = new Vector2(initXPos, initYPos);
+        currentYPos = initYPos;
     }
 
     //function to adjust the position of the highlighter
-    public void ModifyPos(float updatevalue) 
+    public void ModifyPos() 
     { 
-        currentPosY += updatevalue;
+        currentYPos += offset;
         //Debug.Log(currentPosY.ToString());
-        GetComponent<RectTransform>().anchoredPosition = new Vector2(initPosX, currentPosY);
+        GetComponent<RectTransform>().anchoredPosition = new Vector2(initXPos, currentYPos);
         count++;
-        if (currentPosY < finalPosY) 
+        if (currentYPos < finalYPos) 
         {
-            GetComponent<RectTransform>().anchoredPosition = new Vector2(initPosX, initPosY);
-            currentPosY = initPosY;
+            GetComponent<RectTransform>().anchoredPosition = new Vector2(initXPos, initYPos);
+            currentYPos = initYPos;
             count = 0;
         }
     }
