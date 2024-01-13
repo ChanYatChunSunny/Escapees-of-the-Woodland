@@ -13,7 +13,7 @@ public class Apple : Aid
     }
     public override string GetName()
     {
-        return "apple";
+        return "Apple";
     }
 
     // Start is called before the first frame update

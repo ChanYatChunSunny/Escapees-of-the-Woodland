@@ -24,7 +24,7 @@ public class Banana : Aid
     }
     public override string GetName()
     {
-        return "banana";
+        return "Banana";
     }
 
     // Start is called before the first frame update

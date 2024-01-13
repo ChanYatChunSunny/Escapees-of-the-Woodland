@@ -27,7 +27,7 @@ public class SparklingPotion : Aid
     }
     public override string GetName()
     {
-        return "sparkling potion";
+        return "Sparkling Potion";
     }
 
     // Start is called before the first frame update

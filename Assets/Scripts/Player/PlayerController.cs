@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                inventoryValue[i].text = "- Empty ";
+                inventoryValue[i].text = "Empty ";
             }
         }
     }
@@ -160,7 +160,6 @@ public class PlayerController : MonoBehaviour
             if (inventory[i] == null)
             {
                 inventory[i] = element;
-                inventoryValue[i].text = element.GetName();
                 added = true;
                 break;
             }
@@ -193,7 +192,6 @@ public class PlayerController : MonoBehaviour
         if (inventory[pos] == null) { return; }
         inventory[pos].ConsumeBy(this);
         inventory[pos] = null;
-        inventoryValue[pos].text = "-Empty ";
     }
 
     //function to change the health of player
