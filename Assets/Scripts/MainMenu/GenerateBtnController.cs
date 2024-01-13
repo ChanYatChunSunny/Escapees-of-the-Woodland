@@ -17,7 +17,6 @@ public class GenerateBtnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameData.Init();
         seedField.text = "" + new Randomizer().GetInt(100000, 999999);
         mapSizeField.text = "16";
         wrongInputText.gameObject.SetActive(false);
@@ -38,8 +37,8 @@ public class GenerateBtnController : MonoBehaviour
             int mapSize = int.Parse(mapSizeField.text);
             if (seed > 0 && mapSize >= 16) 
             {
-                GameData.GetRandomizer().SetSeed(seed);
-                GameData.SetMapSize(mapSize);
+                Settings.GetRandomizer().SetSeed(seed);
+                Settings.MapSize = mapSize;
                 SceneManager.LoadScene("GameScene");
             }
             else

@@ -24,14 +24,14 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameData.Init();
+        Settings.Init();
         Generate();
     }
 
     private void Generate()
     {
-        int size = GameData.GetMapSize();
-        Randomizer randomizer = GameData.GetRandomizer();
+        int size = Settings.MapSize;
+        Randomizer randomizer = Settings.GetRandomizer();
         int commonLen = commonTiles.Length;
         int rareLen = rareTiles.Length;
 

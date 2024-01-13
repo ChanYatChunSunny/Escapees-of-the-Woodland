@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TMP_Text remainingHealth;
     [SerializeField] private TMP_Text actionText;
     [SerializeField] private GameObject starveUI;
+    [SerializeField] private AudioSource musicSource;
     private int maxHealth = 100;
     private int currentHealth;
     public float time = 0f;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         lastPos = body.position;
         healthToBeDeducted = 0.0f;
         starveUI.SetActive(false);
+        musicSource.volume = Settings.MusicVol;
     }
 
     // Update is called once per frame
