@@ -34,6 +34,7 @@ public class LouisTile : Tile
         objective.Children = new Dialogue[] {getArtifact};
         getArtifact.Children = new Dialogue[] {thank};
         acceptFood.Children = new Dialogue[] { btw, allTheFood };
+        btw.Children = new Dialogue[] { getArtifact };
         greetingWithQuestion.Children = new Dialogue[] {louisGetMad, btw };
         dialogueGraph = new DialogueGraph(start);
 
