@@ -18,7 +18,7 @@ public class GenerateBtnController : MonoBehaviour
     void Start()
     {
         GameData.Init();
-        seedField.text = "123456";
+        seedField.text = "" + new Randomizer().GetInt(100000, 999999);
         mapSizeField.text = "16";
         wrongInputText.gameObject.SetActive(false);
     }
