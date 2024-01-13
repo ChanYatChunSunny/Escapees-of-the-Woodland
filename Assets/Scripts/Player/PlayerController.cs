@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator DeactiveActionText()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         actionText.gameObject.SetActive(false);
     }
 

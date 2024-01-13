@@ -129,7 +129,7 @@ public class DialogueHandler : MonoBehaviour
         {
             int artifactIndex = int.Parse(meta.Replace("gain_artifact ", ""));
             playerController.carryingArtifacts[artifactIndex] = true;
-            playerController.SetActionText("You had gained an artifact. Return it to the pedestal!");
+            playerController.SetActionText("You had gained an artifact. Return it to the pedestal! (Press T in the pedestal to return it along with other artifacts)");
             playerController.FlashActionText();
         } else if (meta.Equals("leave_dialogue"))
         {

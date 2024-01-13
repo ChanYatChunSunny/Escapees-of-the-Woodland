@@ -84,7 +84,7 @@ public class SpawnTile : Tile
         timer.Stop();
         int min = (int)timer.ElapsedMilliseconds / 60000;//Int automatically round down
         int sec = (int)(timer.ElapsedMilliseconds - (min * 60000)) / 1000;
-        timerText.text = "Time spent: " + min + ":" + sec;
+        timerText.text = "Time spent: " + min + ":" + sec.ToString("00");
         successUI.SetActive(true);
     }
 }
