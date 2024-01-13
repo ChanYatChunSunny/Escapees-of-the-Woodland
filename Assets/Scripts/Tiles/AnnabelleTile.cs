@@ -28,7 +28,7 @@ public class AnnabelleTile : Tile
 
 
         start.Children = new Dialogue[] {friendilyTone, teaseAnna, askName};
-        friendilyTone.Children = new Dialogue[] { correctAnswer, wrongAns0, wrongAns1, wrongAns2 };
+        friendilyTone.Children = new Dialogue[] { wrongAns0, wrongAns1, correctAnswer, wrongAns2 };
         correctAnswer.Children = new Dialogue[] { aboutLouis };
         aboutLouis.Children = new Dialogue[] { gainArtifact };
         gainArtifact.Children = new Dialogue[] {thankYou};

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public const int inventorySize = 8;
-    public const int ArtifactsNum = 8;
+    public const int ArtifactsNum = 7;
     public const float highlighterXPos = 10f;
     public const float highlighterChangePos = -31.25f;
     public const float highlighterInitYPos = 55f;

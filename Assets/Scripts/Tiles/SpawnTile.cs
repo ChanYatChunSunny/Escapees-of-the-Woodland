@@ -31,6 +31,7 @@ public class SpawnTile : Tile
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
         timer = new Stopwatch();
+        timer.Start();
         StartCoroutine(FadingStartUI());
     }
     private IEnumerator FadingStartUI()
@@ -71,7 +72,7 @@ public class SpawnTile : Tile
                 }
             }
         }
-        if (submittedArtifactsNum > PlayerController.ArtifactsNum) 
+        if (submittedArtifactsNum >= PlayerController.ArtifactsNum) 
         {
             playerController.playing = false;
             timer.Stop();

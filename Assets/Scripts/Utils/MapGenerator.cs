@@ -18,7 +18,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private GameObject badGenUI;
 
-    private const int MaxTrialCount = 32;
+    private const int MaxTrialCount = 128;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,6 @@ public class MapGenerator : MonoBehaviour
     {
         GameData.Init();
         Generate();
-        badGenUI.SetActive(false);
     }
 
     private void Generate()
@@ -55,7 +54,7 @@ public class MapGenerator : MonoBehaviour
             while (isLocUsed)
             {
                 isLocUsed = false;
-                dir = randomizer.GetDouble() < 0.6 ? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left);
+                dir = randomizer.GetDouble() < 0.68 ? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left+1);
                 Vector2Int newLoc = currLoc + DirectionOperation.DirectionToVector2Int(dir);
                 if (newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size || newLoc.y >= size)
                 {
@@ -74,6 +73,8 @@ public class MapGenerator : MonoBehaviour
                 if(checkCounter >= MaxTrialCount)
                 {
                     badGenUI.SetActive(true);
+                    Debug.Log("failed generation");
+                    return;
                 }
                 currLoc = newLoc;
             }
