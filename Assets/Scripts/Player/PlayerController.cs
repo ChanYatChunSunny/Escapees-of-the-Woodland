@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public const int inventorySize = 8;
     public const int ArtifactsNum = 7;
-    public const float highlighterXPos = 10f;
-    public const float highlighterChangePos = -31.25f;
-    public const float highlighterInitYPos = 55f;
-    public const float highlighterFinalYPos = -163.75f;
+    [SerializeField] float highlighterXPos = 7.7442f;
+    [SerializeField] float highlighterChangePos = -31.25f;
+    [SerializeField] float highlighterInitYPos = 55f;
+    [SerializeField] float highlighterFinalYPos = -163.75f;
     private Aid[] inventory = new Aid[inventorySize];
     public TMP_Text[] inventoryValue = new TMP_Text[inventorySize];
     public int inverntoryCount = 0;
@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TMP_Text remainingHealth;
     [SerializeField] private TMP_Text actionText;
     [SerializeField] private GameObject starveUI;
-    public int maxHealth = 100;
-    public int currentHealth;
+    private int maxHealth = 100;
+    private int currentHealth;
     public float time = 0f;
     public HealthBarController healthBarController;
     private Rigidbody2D body;

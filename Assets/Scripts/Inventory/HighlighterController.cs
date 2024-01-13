@@ -5,11 +5,11 @@ using UnityEngine.UIElements;
 
 public class HighlighterController : MonoBehaviour
 {
-    public float initPosX;
-    public float initPosY;
-    public float finalPosY;
-    public float currentPosY;
-    public int count = 0;
+    private float initPosX;
+    private float initPosY;
+    private float finalPosY;
+    private float currentPosY;
+    private int count = 0;
 
     //function to set the position of the highlighter
     public void SetPos(float initPosX, float initPosY, float finalPosY)
