@@ -1,7 +1,3 @@
-using UnityEngine;
-using TMPro;
-using System.Collections;
-
 public class Banana : Aid
 {
     public override void ConsumeBy(PlayerController playerController)

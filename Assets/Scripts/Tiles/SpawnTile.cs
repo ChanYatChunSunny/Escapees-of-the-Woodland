@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnTile : Tile

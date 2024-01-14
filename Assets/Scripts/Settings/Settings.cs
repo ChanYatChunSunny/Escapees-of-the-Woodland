@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
-
-
-public class Settings
+﻿public class Settings
 {
     private static Randomizer randomizer;
     private static int mapSize;
