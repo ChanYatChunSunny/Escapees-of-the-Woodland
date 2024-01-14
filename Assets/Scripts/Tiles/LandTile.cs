@@ -11,7 +11,7 @@ public class LandTile : Tile
     {
         //The spawning of aids should not be affected by the main RNG (because loot is not part of the aids)
         Randomizer randomizer = new Randomizer();
-        while(randomizer.GetDouble() < 0.096)
+        while(randomizer.GetDouble() < 0.128)
         {
             float x = transform.position.x + (float)(randomizer.GetDouble() < 0.5 ? randomizer.GetDouble() : -randomizer.GetDouble());
             float y = transform.position.y + (float)(randomizer.GetDouble() < 0.5 ? randomizer.GetDouble() : -randomizer.GetDouble());
