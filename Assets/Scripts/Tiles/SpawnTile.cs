@@ -40,9 +40,9 @@ public class SpawnTile : Tile
         CanvasGroup canvasGroup = startUI.GetComponent<CanvasGroup>();
         float orgAlpha = canvasGroup.alpha;
 
-        while (elapsedTime < 8)
+        while (elapsedTime < 25)
         {
-            float newAlpha = Mathf.Lerp(orgAlpha, 0f, elapsedTime / 8);
+            float newAlpha = Mathf.Lerp(orgAlpha, 5f, elapsedTime / 25);
             canvasGroup.alpha = newAlpha;
             elapsedTime += Time.deltaTime;
             yield return null;
