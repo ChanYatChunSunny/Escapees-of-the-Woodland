@@ -1,3 +1,4 @@
+using System;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private GameObject badGenUI;
 
-    private const int MaxTrialCount = 128;
+    private const int MaxTrialCount = 256;
 
 
     // Start is called before the first frame update
@@ -55,9 +56,16 @@ public class MapGenerator : MonoBehaviour
             //Locate the next tile iteratively
             while (isLocUsed)
             {
+                //When the seed is unlucky
+                checkCounter++;
+                if (checkCounter >= MaxTrialCount)
+                {
+                    badGenUI.SetActive(true);
+                    return;
+                }
                 isLocUsed = false;
                 //70% chance remain original direction, otherwise, pick a new direction
-                dir = randomizer.GetDouble() < 0.7 ? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left+1);
+                dir = randomizer.GetDouble()<Math.E%1? dir : (Direction)randomizer.GetInt((int)Direction.up, (int)Direction.left+1);
                 Vector2Int newLoc = currLoc + DirectionOperation.DirectionToVector2Int(dir);
                 //Border protection
                 if (newLoc.x < 0 || newLoc.y < 0 || newLoc.x >= size || newLoc.y >= size)
@@ -71,17 +79,10 @@ public class MapGenerator : MonoBehaviour
                     isLocUsed = true;
                     continue;
                 }
-                //When the seed is unlucky
-                checkCounter++;
-                if(checkCounter >= MaxTrialCount)
-                {
-                    badGenUI.SetActive(true);
-                    return;
-                }
                 currLoc = newLoc;
             }
             //Only place special tiles 
-            if (randWalkCounter > randomizer.GetInt(size/4, size/2))
+            if (randWalkCounter > randomizer.GetInt(size/6, size/3))
             {
                 Instantiate(uniqueTiles[uniquePtr], (Vector2)currLoc * 4, Quaternion.identity);
                 uniquePtr++;
