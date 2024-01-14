@@ -16,6 +16,8 @@ public class SpawnTile : Tile
     [SerializeField]
     private Sprite[] pedestalSprites;
 
+    private const float FadingTime = 16f;
+
     private int submittedArtifactsNum;
     private bool[] submittedArtifacts;
     private Stopwatch timer;
@@ -39,10 +41,10 @@ public class SpawnTile : Tile
         float elapsedTime = 0f;
         CanvasGroup canvasGroup = startUI.GetComponent<CanvasGroup>();
         float orgAlpha = canvasGroup.alpha;
-
-        while (elapsedTime < 25)
+        //make the UI more and more transparent over a span of time
+        while (elapsedTime < FadingTime)
         {
-            float newAlpha = Mathf.Lerp(orgAlpha, 5f, elapsedTime / 25);
+            float newAlpha = Mathf.Lerp(orgAlpha, 0.2f, elapsedTime / FadingTime);
             canvasGroup.alpha = newAlpha;
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -58,7 +60,8 @@ public class SpawnTile : Tile
     }
     public override void Interact(PlayerController playerController)
     {
-        for(int i = 0; i < PlayerController.ArtifactsNum; i++)
+        startUI.SetActive(false);
+        for (int i = 0; i < PlayerController.ArtifactsNum; i++)
         {
             if (playerController.carryingArtifacts[i])
             {
