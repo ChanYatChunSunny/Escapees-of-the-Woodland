@@ -33,7 +33,7 @@ public class SkylaTile : Tile
             "Well... I suppose you are right... But...");
         Dialogue onlyKnewName = new Dialogue("You are Skyla, right? Now, I know you may like your tent, but there are many others here that want to escape, can you help me so we can leave here together?",
             "No! I won't leave this place! I really don't want to go back to the city!");
-        knowPaulToo.Children = new Dialogue[] { usePaul, onlyKnewName };
+        knowPaulToo.Children = new Dialogue[] { onlyKnewName, usePaul };
         introduce.Children = new Dialogue[] { onlyKnewName };
 
         Dialogue plzAfterPaul = new Dialogue("Please, Paul and I can help you to find a housing option after we returned to the city. It may not be something great, but you would have a home.",

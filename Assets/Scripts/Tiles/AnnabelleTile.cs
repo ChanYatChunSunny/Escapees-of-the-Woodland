@@ -34,7 +34,7 @@ public class AnnabelleTile : Tile
         Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
 
 
-        start.Children = new Dialogue[] {friendilyTone, teaseAnna, askName};
+        start.Children = new Dialogue[] { teaseAnna, friendilyTone, askName};
         friendilyTone.Children = new Dialogue[] { wrongAns0, wrongAns1, correctAnswer, wrongAns2 };
         correctAnswer.Children = new Dialogue[] { aboutLouis };
         aboutLouis.Children = new Dialogue[] { waa, gainArtifact };

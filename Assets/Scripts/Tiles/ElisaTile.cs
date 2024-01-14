@@ -25,7 +25,7 @@ public class ElisaTile : Tile
 
         Dialogue wrongAns = new Dialogue("Yes, you are Elsa, the one who created a video and traveled the world in 80 days", "What, do you really know me? That's is shot by my biggest rival Elsa!");
 
-        Dialogue takePhoto = new Dialogue("Can we take a photo?", "Sure, my fan.");
+        Dialogue takePhoto = new Dialogue("Can we take a photo?", "Sure, my fan. (You took a photo with Elisa happily)");
 
         Dialogue askArtifact = new Dialogue("Anyway, I need an artifact to get us all out of here.", "You mean this?");
         Dialogue thank = new Dialogue("Yes! Thank you!", "You are welcome.", "gain_artifact 4", true);
