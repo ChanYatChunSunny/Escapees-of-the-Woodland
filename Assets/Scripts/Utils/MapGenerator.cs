@@ -1,8 +1,5 @@
 using System;
-using System.CodeDom.Compiler;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -108,7 +105,7 @@ public class MapGenerator : MonoBehaviour
                     isLocUsed = true;
                     continue;
                 }
-                GameObject tile = randomizer.GetDouble() < 0.6 ? walkableTiles[randomizer.GetInt(0, walkableLen)] : obstacleTiles[randomizer.GetInt(0, obstacleLen)];
+                GameObject tile = randomizer.GetDouble() < 0.5 ? walkableTiles[randomizer.GetInt(0, walkableLen)] : obstacleTiles[randomizer.GetInt(0, obstacleLen)];
                 Instantiate(tile, (Vector2)currLoc * 4, Quaternion.identity);
             }
         }

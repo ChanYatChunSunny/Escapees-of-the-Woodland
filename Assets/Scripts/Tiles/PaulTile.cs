@@ -28,7 +28,7 @@ public class PaulTile : Tile
         Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
         youFool.Children = new Dialogue[] { noooo };
         Dialogue bye = new Dialogue("Bye.", "", "leave_dialogue", true);
-        start.Children = new Dialogue[] { nothingNeedHelp, giveArtifact, youFool, bye };
+        start.Children = new Dialogue[] { nothingNeedHelp, youFool, giveArtifact, bye };
         hiAndAnythingNeedHelp.Children = new Dialogue[] { nothingNeedHelp, giveArtifact, bye };
         nothingNeedHelp.Children = new Dialogue[] { bye };
         bye.Children = new Dialogue[] { hiAndAnythingNeedHelp };

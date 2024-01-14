@@ -29,7 +29,7 @@ public class LouisTile : Tile
         louisGetMad.Children = new Dialogue[] { noooo };
         Dialogue nooooByHit = new Dialogue("Noooo!", "", "fail_game_injury");
         stealFood.Children = new Dialogue[] {nooooByHit };
-        start.Children = new Dialogue[] {greeting, greetingWithQuestion, stealFood};
+        start.Children = new Dialogue[] {greetingWithQuestion, stealFood, greeting };
         greeting.Children = new Dialogue[] {objective, acceptFood};
         objective.Children = new Dialogue[] {getArtifact};
         getArtifact.Children = new Dialogue[] {thank};

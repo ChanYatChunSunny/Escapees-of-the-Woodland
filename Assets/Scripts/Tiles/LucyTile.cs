@@ -30,8 +30,10 @@ public class LucyTile : Tile
 
         Dialogue lookAndTrustYou = new Dialogue("What I said is real, we need to get you out of here to spread the good of Starflame", "Alright, I will do it for Starflame.", "gain_artifact 5");
         iHaveToo.Children = new Dialogue[] { youFool, lookAndTrustYou };
-        Dialogue thank = new Dialogue("Thank you. May Starflame be with us.", "May Starflame bless you.", "", true);
+        Dialogue thank = new Dialogue("Thank you. May Starflame be with us.", "May Starflame bless you.", true);
+        Dialogue bye = new Dialogue("Bye.", "", "leave_dialogue", true);
         lookAndTrustYou.Children = new Dialogue[] { thank };
+        thank.Children = new Dialogue[] { bye };
 
         Dialogue noBelieve = new Dialogue("No, I don't believe in Starflame. I believe in science",
             "Another person like Liam, huh? Well, then let me explain why Starflame is the true and only deity.", false);
@@ -61,7 +63,7 @@ public class LucyTile : Tile
         conclusion.Children = new Dialogue[] { noBelieve, yesNow };
         yesNow.Children = new Dialogue[] { alwaysWant };
 
-        start.Children = new Dialogue[] {alwaysWant, noBelieve, freeFood};
+        start.Children = new Dialogue[] { noBelieve, alwaysWant, freeFood};
 
         Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
         Dialogue nooooByHit = new Dialogue("Noooo!", "", "fail_game_injury");
