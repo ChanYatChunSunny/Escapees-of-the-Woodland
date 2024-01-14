@@ -22,7 +22,7 @@ public class PaulTile : Tile
         thank.Children = new Dialogue[] { finishThank };
 
 
-        Dialogue youFool = new Dialogue("It is this kind of 'nice guy' again, right? Well, then just hand me over that artifact if you want to help so much.", "Me being nice doesn't mean you can be so rude to me! I would smash this thing before giving it to you!");
+        Dialogue youFool = new Dialogue("It is this kind of 'nice guy' again, right? What a fool. Well, then just hand me over that artifact if you want to help so much.", "Me being nice doesn't mean you can be so rude to me! I would smash this thing before giving it to you!");
         Dialogue noooo = new Dialogue("Noooo!", "", "fail_game");
         youFool.Children = new Dialogue[] { noooo };
         Dialogue bye = new Dialogue("Bye.", "", "leave_dialogue", true);
