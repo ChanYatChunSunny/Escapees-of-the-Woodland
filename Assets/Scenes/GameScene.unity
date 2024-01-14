@@ -5859,18 +5859,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You were kidnapped and were placed in the Woodland. Before you fainted,
-    you heard your kidnapper mentioned that the only way to escape is to gather all
-    artifacts from all other escapees.
+  m_text: 'You were kidnapped and placed in the Woodland. Before you fainted, you
+    heard your kidnapper mention that the only way to escape was to gather all artifacts
+    from all other escapees.
 
+    
 
-
-    Only you know the way of escape and
-    you need to convince others to give you their artifacts by building a connection
+    Only you know the way of escape and you
+    need to convince others to give you their artifacts by building a connection
     with them.
 
+    
 
-    Try you best to be nice! Or they may not give you the artifacts!'
+    Try your best to be nice! Or they may not give you the
+    artifacts!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
