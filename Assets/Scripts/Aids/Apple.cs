@@ -7,8 +7,7 @@ public class Apple : Aid
     public override void ConsumeBy(PlayerController playerController)
     {
         playerController.ModifyHealth(10);
-        playerController.SetActionText("You ate an apple");
-        playerController.FlashActionText();
+        playerController.ShowActionText("You ate an apple");
 
     }
     public override string GetName()

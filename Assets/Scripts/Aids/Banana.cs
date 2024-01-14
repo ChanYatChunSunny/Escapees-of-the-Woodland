@@ -10,15 +10,13 @@ public class Banana : Aid
         if (randomizer.GetDouble() < 0.5)
         {
             playerController.ModifyHealth(8);
-            playerController.SetActionText("You ate a banana");
-            playerController.FlashActionText();
+            playerController.ShowActionText("You ate a banana");
         }
         else
         {
             playerController.ModifyHealth(8);
-            playerController.SetActionText("You ate a banana but slipped over its skin");
+            playerController.ShowActionText("You ate a banana but slipped over its skin");
             playerController.ModifyHealth(-6);
-            playerController.FlashActionText();
         }
 
     }

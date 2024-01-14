@@ -1431,9 +1431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81fe5127fd778b40bc47e5eabcdd15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonTiles:
+  walkableTiles:
   - {fileID: 138406909409251677, guid: c6b6613f39981a64fa24f2d99d154f24, type: 3}
-  rareTiles:
+  obstacleTiles:
   - {fileID: 366616422265935100, guid: d41283c91f9306b4e883e63f67d94be3, type: 3}
   uniqueTiles:
   - {fileID: 138406909409251677, guid: 125f03ae3fcf0e84dae92ab48ab6c77f, type: 3}
@@ -1493,8 +1493,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -32}
-  m_SizeDelta: {x: 394.8549, y: 47.152}
+  m_AnchoredPosition: {x: 0, y: -31.79}
+  m_SizeDelta: {x: 490.91, y: 47.152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605562721
 MonoBehaviour:

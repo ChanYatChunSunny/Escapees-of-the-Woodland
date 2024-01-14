@@ -10,8 +10,7 @@ public class SparklingPotion : Aid
         if (randomizer.GetDouble() < 0.5)
         {
             playerController.ModifyHealth(32);
-            playerController.SetActionText("You drank a sparkling potion and it is good");
-            playerController.FlashActionText();
+            playerController.ShowActionText("You drank a sparkling potion and it is good");
         }
         else
         {
@@ -20,8 +19,7 @@ public class SparklingPotion : Aid
             {
                 playerController.ModifyHealth(-1024);
             }
-            playerController.SetActionText("You drank a sparkling potion and it is bad");
-            playerController.FlashActionText();
+            playerController.ShowActionText("You drank a sparkling potion and it is bad");
         }
 
     }

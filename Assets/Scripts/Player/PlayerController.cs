@@ -56,40 +56,18 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("walking", false);
             return;
         }
-        PrintFromInventory();
+        UpdateInventory();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Vector2 newVelocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
-        body.velocity = newVelocity;
-        
-        if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f))
-        {
-            if (horizontal > 0.0f)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-
-            }
-            else if (horizontal < -0.0f)
-            {
-                transform.localScale = Vector3.one;
-            }
-            animator.SetBool("walking", true);
-            animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("vertical", Input.GetAxis("Vertical"));
-        }
-        else
-        {
-            animator.SetBool("walking", false);
-        }
-
-        healthToBeDeducted += ((lastPos - body.position).magnitude)/2.8f;
-        //Only deduct a rounded-down int amount of health each time
-        int healthDeductingNow = (int)healthToBeDeducted;
-        ModifyHealth(-healthDeductingNow);
-        healthToBeDeducted -= healthDeductingNow;
-        lastPos = body.position;
+        Move(horizontal, vertical);
+        Animate(horizontal, vertical);
     }
 
+
+    
+    /// <summary>
+    /// Update is more suitable for key detection while fixed update is more suitable for movement calculation
+    /// </summary>
     public void Update()
     {
         if (!playing) { return; }
@@ -131,8 +109,46 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Move the player then decrease health based on how much the player had moved
+    /// </summary>
+    /// <param name="horizontal"></param>
+    /// <param name="vertical"></param>
+    private void Move(float horizontal, float vertical)
+    {
+        Vector2 newVelocity = new Vector2(horizontal * movingSpeed * Time.deltaTime, vertical * movingSpeed * Time.deltaTime);
+        body.velocity = newVelocity;
+        healthToBeDeducted += ((lastPos - body.position).magnitude) / 2.8f;
+        int healthDeductingNow = (int)healthToBeDeducted;
+        ModifyHealth(-healthDeductingNow);
+        healthToBeDeducted -= healthDeductingNow;
+        lastPos = body.position;
+    }
+    private void Animate(float horizontal, float vertical)
+    {
+        if (!Mathf.Approximately(horizontal, 0.0f) || !Mathf.Approximately(vertical, 0.0f))
+        {
+            if (horizontal > 0.0f)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+
+            }
+            else if (horizontal < -0.0f)
+            {
+                transform.localScale = Vector3.one;
+            }
+            animator.SetBool("walking", true);
+            animator.SetFloat("horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("vertical", Input.GetAxis("Vertical"));
+        }
+        else
+        {
+            animator.SetBool("walking", false);
+        }
+    }
+
     //function to get the element in inventory
-    public void PrintFromInventory()
+    private void UpdateInventory()
     {
         for (int i = 0; i < inventorySize; i++)
         {
@@ -168,16 +184,16 @@ public class PlayerController : MonoBehaviour
         }
         if(!added)
         {
-            SetActionText("Inventory is full");
-            FlashActionText();
+            ShowActionText("Inventory is full");
         }
     }
-    public void SetActionText(string str)
+    /// <summary>
+    /// Show an action text and hide it 2 secs later
+    /// </summary>
+    /// <param name="str">the string to be displayed on the action text</param>
+    public void ShowActionText(string str)
     {
         actionText.text = str;
-    }
-    public void FlashActionText()
-    {
         actionText.gameObject.SetActive(true);
         StartCoroutine(DeactiveActionText());
     }

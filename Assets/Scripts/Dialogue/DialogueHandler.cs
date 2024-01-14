@@ -129,8 +129,7 @@ public class DialogueHandler : MonoBehaviour
         {
             int artifactIndex = int.Parse(meta.Replace("gain_artifact ", ""));
             playerController.carryingArtifacts[artifactIndex] = true;
-            playerController.SetActionText("You had gained an artifact. Return it to the pedestal! (Press T in the pedestal to return it along with other artifacts)");
-            playerController.FlashActionText();
+            playerController.ShowActionText("You had gained an artifact. Return it to the pedestal!\n(Press T in the pedestal to return it along with other artifacts)");
         } else if (meta.Equals("leave_dialogue"))
         {
             isInConversation = false;
@@ -150,11 +149,11 @@ public class DialogueHandler : MonoBehaviour
             playerController.ModifyHealth(change);
             if(change > 0)
             {
-                playerController.SetActionText("Your stomach feels more full now.");
+                playerController.ShowActionText("Your stomach feels more full now.");
             }
             else
             {
-                playerController.SetActionText("You felt more hungry now.");
+                playerController.ShowActionText("You felt more hungry now.");
             }
         }
     }
